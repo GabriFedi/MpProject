@@ -38,6 +38,11 @@ public class Team implements Opponent{
         return getPlayers().mapToDouble(Opponent::getStrenght).sum();
     }
     
+    @Override
+    public int getPlayersNumber(){
+        return getPlayers().mapToInt(Opponent::getPlayersNumber).sum();
+    }
+    
     
 }
 

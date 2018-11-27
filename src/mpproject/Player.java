@@ -30,6 +30,11 @@ public class Player implements Opponent{
     public void setStrenght(double strenght) {
         this.strenght = strenght;
     }
+
+    @Override
+    public int getPlayersNumber() {
+        return 1;
+    }
     
     
     
