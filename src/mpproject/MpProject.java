@@ -15,7 +15,7 @@ public class MpProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Team t = new Team("prova");
     }
     
 }

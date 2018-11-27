@@ -29,7 +29,7 @@ public class Team implements Opponent{
         players.add(o);
     }
     
-    public Stream getPlayers(){
+    public Stream<Opponent> getPlayers(){
         return players.stream();
     }
     
@@ -40,3 +40,4 @@ public class Team implements Opponent{
     
     
 }
+

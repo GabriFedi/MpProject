@@ -11,6 +11,7 @@ import java.util.LinkedList;
 /**
  *
  * @author work
+ * @param <T>
  */
 public class ObserverRegister <T> implements MyObservable<T>{
     private LinkedList<MyObserver<T>> observers;
