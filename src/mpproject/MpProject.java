@@ -16,6 +16,14 @@ public class MpProject {
      */
     public static void main(String[] args) {
         Team t = new Team("prova");
+        Team t2 = new Team("prova");
+        Player p1 = new Player("zineb",1);
+        Player p2 = new Player("zineb",2);
+        t.addPlayer(p1);
+        t.addPlayer(p2);
+        t2.addPlayer(p1);
+        t2.addPlayer(p2);
+        Match m = new Match(t,t2);
     }
     
 }

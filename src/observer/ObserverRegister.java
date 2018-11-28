@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mpproject;
+package observer;
 
+import observer.MyObserver;
+import observer.MyObservable;
 import java.util.LinkedList;
 
 
