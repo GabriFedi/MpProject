@@ -13,16 +13,16 @@ import visitor.MyVisitor;
  *
  * @author work
  */
-public abstract class BetEvent{
+public abstract class SportEvent{
     private LinkedList<Opponent> opponents;
     private int status;
-    public static ObserverRegister<BetEvent> observerRegister;
+    public static ObserverRegister<SportEvent> observerRegister;
     
     public static final int TO_PLAY=0;
     public static final int PLAYING=1;
     public static final int FINISHED=2;
 
-    public BetEvent(Opponent... opponents )throws IllegalArgumentException{
+    public SportEvent(Opponent... opponents )throws IllegalArgumentException{
         int playersNumbers = opponents[0].getPlayersNumber();
         this.opponents = new LinkedList<>();
         for(Opponent o : opponents){

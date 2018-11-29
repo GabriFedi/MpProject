@@ -7,13 +7,13 @@ package visitor;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import mpproject.BetEvent;
+import mpproject.SportEvent;
 
 /**
  *
  * @author work
  */
-public abstract class QuoteEstimator implements MyVisitor<BetEvent>{
+public abstract class QuoteEstimator implements MyVisitor<SportEvent>{
     private LinkedList<Double> quote;
 
     public QuoteEstimator() {
@@ -27,11 +27,11 @@ public abstract class QuoteEstimator implements MyVisitor<BetEvent>{
     
     
     @Override
-    public void visit(BetEvent m) {
+    public void visit(SportEvent m) {
         switch(m.getStatus()){
-            case BetEvent.TO_PLAY: setToPlayQuote();
+            case SportEvent.TO_PLAY: setToPlayQuote();
                                 break;
-            case BetEvent.PLAYING: setPlayingQuote();
+            case SportEvent.PLAYING: setPlayingQuote();
                                 break;
         }
     }

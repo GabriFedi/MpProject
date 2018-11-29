@@ -9,13 +9,14 @@ package mpproject;
  *
  * @author work
  */
-public class MpProject {
+public class SinglePlayer extends Player{
+    private Score score;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
+    public SinglePlayer(String name, double strenght, Score score) {
+        super(name, strenght);
+        this.score = score;
     }
+
+   
     
 }

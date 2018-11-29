@@ -15,11 +15,12 @@ import java.util.stream.Stream;
 public class Team implements Opponent{
     private final String name;
     private LinkedList<Opponent> players;
-    private int score;
+    private Score score;
 
-    public Team(String name) {
+    public Team(String name, Score score) {
         this.name = name;
         players = new LinkedList<>();
+        this.score = score;
     }
 
     public String getName() {
@@ -43,6 +44,12 @@ public class Team implements Opponent{
     public int getPlayersNumber(){
         return getPlayers().mapToInt(Opponent::getPlayersNumber).sum();
     }
+
+    public Score getScore() {
+        return score;
+    }
+    
+    
 
     
 }
