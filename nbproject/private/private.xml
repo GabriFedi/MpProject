@@ -3,18 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/ObserverRegister.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Matchsoccer.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Player.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Opponent.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Team.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/MyVisitor.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Betting.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/MpProject.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObservable.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObserver.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Match.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/QuoteEstimator.java</file>
+            <file>file:/home/alessandro/Scrivania/MpProject/src/mpproject/Betting.java</file>
+            <file>file:/home/alessandro/Scrivania/MpProject/src/mpproject/Score.java</file>
+            <file>file:/home/alessandro/Scrivania/MpProject/src/mpproject/Player.java</file>
+            <file>file:/home/alessandro/Scrivania/MpProject/src/mpproject/MpProject.java</file>
+            <file>file:/home/alessandro/Scrivania/MpProject/src/mpproject/Opponent.java</file>
+            <file>file:/home/alessandro/Scrivania/MpProject/src/mpproject/Team.java</file>
+            <file>file:/home/alessandro/Scrivania/MpProject/src/mpproject/TennisScore.java</file>
         </group>
     </open-files>
 </project-private>
