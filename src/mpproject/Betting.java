@@ -9,9 +9,7 @@ package mpproject;
  *
  * @author work
  */
-public interface Match {
-    public void incrementScoreOpponent(int i);
-    public String getScore(int i);
-    public int getWinner();
-    public int getStatus();
+public interface Betting {
+    
+    public double bet(int code, double amount);
 }

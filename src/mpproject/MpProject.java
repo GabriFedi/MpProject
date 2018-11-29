@@ -23,7 +23,7 @@ public class MpProject {
         t.addPlayer(p2);
         t2.addPlayer(p1);
         t2.addPlayer(p2);
-        Match m = new Match(t,t2);
+        Matchsoccer m = new Matchsoccer(t,t2);
     }
     
 }
