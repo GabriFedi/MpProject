@@ -5,19 +5,38 @@
  */
 package visitor;
 
-import mpproject.Matchsoccer;
+import java.util.Iterator;
+import java.util.LinkedList;
+import mpproject.BetEvent;
 
 /**
  *
  * @author work
  */
-public class QuoteEstimator implements MyVisitor<Matchsoccer>{
-    private double quota1;
-    private double quota2;
-    private double quotaX;
+public abstract class QuoteEstimator implements MyVisitor<BetEvent>{
+    private LinkedList<Double> quote;
+
+    public QuoteEstimator() {
+        quote = new LinkedList<>();
+    }
+
+    public Iterator<Double> getQuote() {
+        return quote.iterator();
+    }
+    
+    
     
     @Override
-    public void visit(Matchsoccer m) {
+    public void visit(BetEvent m) {
+        switch(m.getStatus()){
+            case BetEvent.TO_PLAY: setToPlayQuote();
+                                break;
+            case BetEvent.PLAYING: setPlayingQuote();
+                                break;
+        }
     }
+    
+    public abstract void setToPlayQuote();
+    public abstract void setPlayingQuote();
     
 }

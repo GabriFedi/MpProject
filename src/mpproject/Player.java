@@ -13,6 +13,7 @@ public class Player implements Opponent{
     private final String name;
     private double strenght;
 
+
     public Player(String name, double strenght) {
         this.name = name;
         this.strenght = strenght;
@@ -30,11 +31,13 @@ public class Player implements Opponent{
     public void setStrenght(double strenght) {
         this.strenght = strenght;
     }
-
+    
     @Override
     public int getPlayersNumber() {
         return 1;
     }
+
+ 
     
     
     
