@@ -11,4 +11,6 @@ package mpproject;
  */
 public interface Score {
     public String getScore();
+    public void increase() throws IllegalAccessException;
+    public void increase(int amount) throws IllegalArgumentException;
 }

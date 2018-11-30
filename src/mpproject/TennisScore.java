@@ -12,17 +12,12 @@ package mpproject;
 public class TennisScore implements Score,Comparable{
     private int wonSets;
     private int currentSetScore;
+    private boolean vantage;
 
     public TennisScore(int wonSets, int currentSetScore) {
         this.wonSets = wonSets;
         this.currentSetScore = currentSetScore;
-    }
-    
-    public void increaseScore(){
-        if(currentSetScore < 30)
-            currentSetScore += 15;
-        else
-            currentSetScore += 10;
+        this.vantage = true;
     }
     
     public void increaseSet(){
@@ -40,7 +35,15 @@ public class TennisScore implements Score,Comparable{
     }
     
     public boolean hasWon(){
-        return wonSets == 3;
+        return wonSets == 6;
+    }
+
+    public boolean isVantage() {
+        return vantage;
+    }
+
+    public void setVantage(boolean vantage) {
+        this.vantage = vantage;
     }
     
     @Override
@@ -60,5 +63,31 @@ public class TennisScore implements Score,Comparable{
     public String toString(){
         return "" + wonSets + "-" + currentSetScore;
     }
+
+    @Override
+    public void increase(int amount) throws IllegalArgumentException {
+        throw new UnsupportedOperationException("The score increasing way is standard."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void increase() throws IllegalAccessException{
+        if(this.currentSetScore == 0 || this.currentSetScore == 15){
+            this.currentSetScore += 15;
+        }
+        else if(this.currentSetScore == 30){
+            this.currentSetScore += 10;
+        }
+        else{
+            if(this.vantage){
+                this.wonSets ++;
+                this.currentSetScore = 0;
+            }
+            else{
+                throw new IllegalAccessException("Can.t win the game with false vantage");
+            }
+        }
+    }
+
+    
     
 }

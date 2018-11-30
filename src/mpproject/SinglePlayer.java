@@ -17,6 +17,7 @@ public class SinglePlayer extends Player{
         this.score = score;
     }
 
+    
    
     
 }

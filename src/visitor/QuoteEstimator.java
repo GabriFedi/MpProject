@@ -27,16 +27,16 @@ public abstract class QuoteEstimator implements MyVisitor<SportEvent>{
     
     
     @Override
-    public void visit(SportEvent m) {
+    public final void visit(SportEvent s) {
         switch(m.getStatus()){
-            case SportEvent.TO_PLAY: setToPlayQuote();
+            case SportEvent.TO_PLAY: setToPlayQuote(s);
                                 break;
-            case SportEvent.PLAYING: setPlayingQuote();
+            case SportEvent.PLAYING: setPlayingQuote(s);
                                 break;
         }
     }
     
-    public abstract void setToPlayQuote();
-    public abstract void setPlayingQuote();
+    public abstract void setToPlayQuote(SportEvent s);
+    public abstract void setPlayingQuote(SportEvent s);
     
 }
