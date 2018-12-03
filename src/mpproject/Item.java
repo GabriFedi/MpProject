@@ -5,10 +5,14 @@
  */
 package mpproject;
 
+import visitor.MyVisitor;
+
 /**
  *
  * @author work
  */
 public interface Item {
     public double getPrice();
+    public void addItem(Item a);
+    public void accept(MyVisitor v);
 }

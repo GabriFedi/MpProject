@@ -5,11 +5,13 @@
  */
 package mpproject;
 
+import visitor.MyVisitor;
+
 /**
  *
  * @author work
  */
-public class Product {
+public class Product implements Item{
     private final String name;
     private double price;
     private String descr;
@@ -19,6 +21,7 @@ public class Product {
         this.price = price;
     }
 
+    @Override
     public double getPrice() {
         return price;
     }
@@ -37,6 +40,16 @@ public class Product {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void addItem(Item p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void accept(MyVisitor v) {
+        v.visit(this);
     }
     
     
