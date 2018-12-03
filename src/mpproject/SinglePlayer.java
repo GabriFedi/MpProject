@@ -17,7 +17,10 @@ public class SinglePlayer extends Player{
         this.score = score;
     }
 
-    
+    @Override
+    public Score getScore() {
+        return this.score;
+    }
    
     
 }

@@ -5,6 +5,8 @@
  */
 package mpproject;
 
+import visitor.QuoteEstimatorMatch;
+
 /**
  *
  * @author work
@@ -16,6 +18,13 @@ public class MpProject {
      */
     public static void main(String[] args) {
         
+        SinglePlayer Player = new SinglePlayer("zizzopanizzo", 78, new TennisScore());
+        SinglePlayer Player2 = new SinglePlayer("zizzocatizzo", 86, new TennisScore());
+        
+        SportEvent tennisMatch = new TennisMatch(Player,Player2);
+        QuoteEstimatorMatch v = new QuoteEstimatorMatch();
+        tennisMatch.accept(v);
+        System.out.println(v.getQuote());
     }
     
 }

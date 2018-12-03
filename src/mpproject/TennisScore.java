@@ -14,9 +14,9 @@ public class TennisScore implements Score,Comparable{
     private int currentSetScore;
     private boolean vantage;
 
-    public TennisScore(int wonSets, int currentSetScore) {
-        this.wonSets = wonSets;
-        this.currentSetScore = currentSetScore;
+    public TennisScore() {
+        this.wonSets = 0;
+        this.currentSetScore = 0;
         this.vantage = true;
     }
     

@@ -37,7 +37,7 @@ public class Team implements Opponent{
     
     @Override
     public double getStrenght(){
-        return getPlayers().mapToDouble(Opponent::getStrenght).sum();
+        return getPlayers().mapToDouble(Opponent::getStrenght).sum()/getPlayersNumber();
     }
     
     @Override

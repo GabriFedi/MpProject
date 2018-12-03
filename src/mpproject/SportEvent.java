@@ -5,6 +5,7 @@
  */
 package mpproject;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import observer.ObserverRegister;
 import visitor.MyVisitor;
@@ -13,7 +14,7 @@ import visitor.MyVisitor;
  *
  * @author work
  */
-public abstract class SportEvent{
+public class SportEvent{
     private LinkedList<Opponent> opponents;
     private int status;
     public static ObserverRegister<SportEvent> observerRegister;
@@ -45,6 +46,10 @@ public abstract class SportEvent{
     public void setStatus(int status) {
         this.status = status;
         observerRegister.notifyObservers(this, "0");
+    }
+
+    public Iterator<Opponent> getOpponents() {
+        return opponents.iterator();
     }
     
     

@@ -5,22 +5,28 @@
  */
 package visitor;
 
+import java.util.Iterator;
+import mpproject.Opponent;
+import mpproject.Score;
 import mpproject.SportEvent;
 
 /**
  *
  * @author work
  */
-public class QuoteEstimatorTennis extends QuoteEstimator{
+public class QuoteEstimatorTennis extends QuoteEstimatorMatch{
 
     @Override
-    public void setToPlayQuote(SportEvent s) {
+    public void setPlayingQuote(SportEvent s) {
+        Iterator<Opponent> opponents =  s.getOpponents();
+        Opponent opponent1 = opponents.next();
+        Opponent opponent2 = opponents.next();
+        
+        Score score1 = opponent1.getScore();
+        Score score2 = opponent2.getScore();
+        
+        
+        
     }
-
-    @Override
-    public void setPlayingQuote() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
 }

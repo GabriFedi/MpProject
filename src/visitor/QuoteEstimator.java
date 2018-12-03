@@ -20,15 +20,15 @@ public abstract class QuoteEstimator implements MyVisitor<SportEvent>{
         quote = new LinkedList<>();
     }
 
-    public Iterator<Double> getQuote() {
-        return quote.iterator();
+    public LinkedList<Double> getQuote() {
+        return quote;
     }
     
     
     
     @Override
     public final void visit(SportEvent s) {
-        switch(m.getStatus()){
+        switch(s.getStatus()){
             case SportEvent.TO_PLAY: setToPlayQuote(s);
                                 break;
             case SportEvent.PLAYING: setPlayingQuote(s);

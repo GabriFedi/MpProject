@@ -14,8 +14,10 @@ public class Player implements Opponent{
     private double strenght;
 
 
-    public Player(String name, double strenght) {
+    public Player(String name, double strenght) throws IllegalArgumentException{
         this.name = name;
+        if(strenght > 100 || strenght<=0)
+            throw new IllegalArgumentException("Strength must be between 1 and 100");
         this.strenght = strenght;
     }
 
@@ -28,13 +30,15 @@ public class Player implements Opponent{
         return strenght;
     }
 
-    public void setStrenght(double strenght) {
-        this.strenght = strenght;
-    }
     
     @Override
     public int getPlayersNumber() {
         return 1;
+    }
+
+    @Override
+    public Score getScore() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
  

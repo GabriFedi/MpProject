@@ -12,4 +12,5 @@ package mpproject;
 public interface Opponent {
     public double getStrenght();
     public int getPlayersNumber();
+    public Score getScore();
 }

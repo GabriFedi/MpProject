@@ -12,12 +12,14 @@
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/SinglePlayer.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Score.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/TennisScore.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/QuoteEstimatorMatch.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Player.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/SportEvent.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Opponent.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Team.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObservable.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObserver.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/TennisMatch.java</file>
         </group>
     </open-files>
 </project-private>
