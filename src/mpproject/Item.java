@@ -9,7 +9,6 @@ package mpproject;
  *
  * @author work
  */
-public interface Betting {
-    
-    public double bet(int code, double amount);
+public interface Item {
+    public double getPrice();
 }
