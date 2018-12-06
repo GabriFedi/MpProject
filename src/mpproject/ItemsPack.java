@@ -6,6 +6,7 @@
 package mpproject;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Stream;
 import visitor.MyVisitor;
 
@@ -14,7 +15,7 @@ import visitor.MyVisitor;
  * @author work
  */
 public class ItemsPack implements Item{
-    private LinkedList<Item> items;
+    private List<Item> items;
     private String name;
 
     public ItemsPack(String name) {
@@ -27,7 +28,11 @@ public class ItemsPack implements Item{
     }
 
     public String getName() {
-        return name;
+        String packName = name + ":";
+        for(Item i : items){
+            packName += ("\n " +i.getName());
+        }
+        return packName;
     }
     
     
@@ -37,8 +42,9 @@ public class ItemsPack implements Item{
     }
 
     @Override
-    public void addItem(Item p) {
-        items.add(p);
+    public void add(Item... items) {
+        for(Item i : items)
+            this.items.add(i);
     }
     
 

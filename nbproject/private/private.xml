@@ -3,16 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/ObserverRegister.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Item.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/test/mpproject/CartTest.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/MpProject.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Cart.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Sale.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Payment.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/myexceptions/OutOfMoneyException.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/User.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/ItemsPack.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/test/mpproject/ItemsPackTest.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Product.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Item.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/MyVisitor.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObservable.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObserver.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/MpProject.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/test/mpproject/ProductTest.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/card/CreditCard.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/card/DebitCard.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/card/Card.java</file>
         </group>
     </open-files>
 </project-private>

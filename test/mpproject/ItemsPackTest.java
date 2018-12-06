@@ -24,7 +24,7 @@ public class ItemsPackTest {
     public void setUp() {
         ItemsPack c = new ItemsPack("Envelope");
         assertEquals(c.getItems().count(), 0);
-        assertEquals(c.getName(), "Envelope");
+        assertEquals("Envelope:",c.getName());
         
     }
 
@@ -32,13 +32,16 @@ public class ItemsPackTest {
     public void testGetItems() {
        Product p = new Product("Name",0.0);
        ItemsPack c = new ItemsPack("Envelope");
-       c.addItem(p);
+       c.add(p);
+       
+       assertEquals(true, c.getItems().anyMatch(e -> e == p));
     }
 
     @Test
     public void testGetName() {
         ItemsPack c = new ItemsPack("Envelope");
-        assertEquals("Envelope", c.getName());
+        System.out.print(c.getName());
+        assertEquals("Envelope:", c.getName());
     }
 
     @Test
@@ -46,12 +49,11 @@ public class ItemsPackTest {
         Product p = new Product("Name",1.0);
         Product t = new Product("Name",3.4);
         ItemsPack c = new ItemsPack("Envelope");
-        c.addItem(p);
-        c.addItem(t);
+        c.add(p,t);
         assertEquals(c.getPrice(), 4.4, 0.001);
     }
 
-    @Test
+   /* @Test
     public void testAddItem() {
        
     }
@@ -60,5 +62,5 @@ public class ItemsPackTest {
     public void testAccept() {
         
     }
-    
+    */
 }

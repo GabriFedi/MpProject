@@ -43,7 +43,7 @@ public class Product implements Item{
     }
 
     @Override
-    public void addItem(Item p) {
+    public void add(Item... items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
