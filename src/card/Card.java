@@ -19,7 +19,9 @@ public abstract class Card{
     
     private double balance;
 
-    public Card(String number, String firstname, String lastname, String expiring, String securityCode) {
+    public Card(String number, String firstname, String lastname, String expiring, String securityCode) throws IllegalArgumentException {
+        if(number.length() != 16)
+            throw new IllegalArgumentException("Card number must be of 16 digits");
         this.number = number;
         this.firstname = firstname;
         this.lastname = lastname;
