@@ -5,6 +5,8 @@
  */
 package mpproject;
 
+import graphic.MyJFrame;
+
 /**
  *
  * @author work
@@ -13,5 +15,6 @@ public class MpProject {
     
     public static void main(String[] args){
         System.out.println("zizzopanizzo");
+        new MyJFrame().setVisible(true);
     }
 }

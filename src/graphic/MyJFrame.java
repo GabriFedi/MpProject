@@ -1,6 +1,10 @@
 package graphic;
 
 
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /*
@@ -18,9 +22,54 @@ public class MyJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MyJFrame
      */
+    GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
-        jLabel3.setIcon(new ImageIcon("../imgs/silvio.jpeg"));
+         javax.swing.JButton jButton2 = new javax.swing.JButton();
+         jButton2.setText("cazzo1");
+         java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+         gridBagConstraints.gridx = 0;
+         gridBagConstraints.gridy = 0;
+        // jPanel2.add(jButton2,gridBagConstraints);
+         
+         javax.swing.JButton jButton3 = new javax.swing.JButton();
+         jButton3.setText("cazzo2");
+         gridBagConstraints.gridx = 0;
+         gridBagConstraints.gridy = 4;
+        jPanel2.add(jButton3,gridBagConstraints);
+        
+        javax.swing.JButton jButton4 = new javax.swing.JButton();
+         jButton4.setText("cazzo4");
+         gridBagConstraints.gridx = 4;
+         gridBagConstraints.gridy = 2;
+        jPanel2.add(jButton4,gridBagConstraints);
+        
+        javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
+        jPanel3.setSize(212, 100);
+        jPanel3.setBackground(Color.red);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+         //jPanel3.add(jButton2);
+         
+          javax.swing.JLabel silvio = new javax.swing.JLabel();
+          silvio.setIcon(new ImageIcon("imgs/silvio.jpeg"));
+          jPanel3.add(silvio);
+          
+         jPanel2.add(jPanel3,gridBagConstraints);
+                 
+         javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
+
+        jPanel4.setSize(212, 100);
+        jPanel4.setBackground(Color.red);
+         gridBagConstraints.gridx = 2;
+         gridBagConstraints.gridy = 0;
+         javax.swing.JLabel silvioce = new javax.swing.JLabel();
+          silvioce.setIcon(new ImageIcon("imgs/silvio.jpeg"));
+          jPanel4.add(silvioce);
+         jPanel2.add(jPanel4,gridBagConstraints);
+        
+
+        
     }
 
     /**
@@ -31,37 +80,41 @@ public class MyJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Zizzo Panizzo Farmacia");
 
         jLabel2.setText("Total:");
 
-        jLabel3.setText("item1");
+        java.awt.GridBagLayout jPanel2Layout1 = new java.awt.GridBagLayout();
+        jPanel2Layout1.columnWidths = new int[] {212, 15, 212, 15, 212};
+        jPanel2Layout1.rowHeights = new int[] {100, 5, 10, 5, 10, 5, 30};
+        jPanel2.setLayout(jPanel2Layout1);
+        jScrollPane1.setViewportView(jPanel2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(47, 47, 47))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(222, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(273, 273, 273)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3)))
-                .addContainerGap(210, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(213, 213, 213))))
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,9 +123,8 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,7 +180,8 @@ public class MyJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
