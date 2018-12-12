@@ -25,7 +25,7 @@ public class MyJFrame extends javax.swing.JFrame {
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
-         javax.swing.JButton jButton2 = new javax.swing.JButton();
+        /* javax.swing.JButton jButton2 = new javax.swing.JButton();
          jButton2.setText("cazzo1");
          java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
          gridBagConstraints.gridx = 0;
@@ -69,7 +69,7 @@ public class MyJFrame extends javax.swing.JFrame {
          jPanel2.add(jPanel4,gridBagConstraints);
         
 
-        
+        */
     }
 
     /**
@@ -87,6 +87,7 @@ public class MyJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -95,26 +96,33 @@ public class MyJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Total:");
 
-        java.awt.GridBagLayout jPanel2Layout1 = new java.awt.GridBagLayout();
-        jPanel2Layout1.columnWidths = new int[] {212, 15, 212, 15, 212};
-        jPanel2Layout1.rowHeights = new int[] {100, 5, 10, 5, 10, 5, 30};
-        jPanel2.setLayout(jPanel2Layout1);
+        jPanel2.setLayout(new java.awt.GridLayout(0, 3));
         jScrollPane1.setViewportView(jPanel2);
+
+        jButton1.setText("aggiungi");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(222, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(245, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(47, 47, 47))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(213, 213, 213))))
-            .addComponent(jScrollPane1)
+                        .addGap(190, 190, 190))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,8 +131,10 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,6 +150,30 @@ public class MyJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        javax.swing.JPanel jPanel = new javax.swing.JPanel();
+        jPanel.setLayout(new javax.swing.BoxLayout(jPanel,javax.swing.BoxLayout.PAGE_AXIS));
+        javax.swing.JLabel silvio = new javax.swing.JLabel();
+        silvio.setIcon(new ImageIcon("imgs/silvio.jpeg"));
+        javax.swing.JLabel price = new javax.swing.JLabel();
+        price.setText("0.00$");
+        javax.swing.JLabel title = new javax.swing.JLabel();
+        title.setText("Silvio");
+        javax.swing.JButton cartButton = new javax.swing.JButton();
+        cartButton.setText("aggiungi");
+        
+        jPanel.add(silvio);
+        jPanel.add(title);
+        jPanel.add(price);
+        jPanel.add(cartButton);
+        
+        jPanel2.add(jPanel);
+        
+        revalidate();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +212,7 @@ public class MyJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
