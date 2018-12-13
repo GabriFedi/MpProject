@@ -50,9 +50,9 @@ public class CartTest {
     @Test
     public void testGetPrice() {
         Cart instance = new Cart();
-        Item p = new Product("cipolla", 5.0);
-        Item p1 = new Product("mandarancio", 6.1);
-        Item p3 = new Product("porro", 7.1);
+        Item p = new Product("cipolla", 5.0,"333");
+        Item p1 = new Product("mandarancio", 6.1,"333");
+        Item p3 = new Product("porro", 7.1,"33");
         
         Item pack = new ItemsPack("Frutta");
         pack.add(p,p1);

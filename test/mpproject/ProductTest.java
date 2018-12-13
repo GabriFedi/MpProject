@@ -25,7 +25,7 @@ public class ProductTest {
     @Before
     public void setUp() {
         
-        Product p = new Product("cacio", 25.6);
+        Product p = new Product("cacio", 25.6,"333");
         assertEquals("cacio", p.getName());
     }
     
@@ -33,20 +33,20 @@ public class ProductTest {
 
     @Test
     public void testGetPrice() {
-         Product p = new Product("cacio", 25.6);
+         Product p = new Product("cacio", 25.6,"333");
          assertEquals(25.6 ,p.getPrice(),0.001);
     }
 
     @Test
     public void testSetPrice() {
-        Product p = new Product("", 0.0);
+        Product p = new Product("", 0.0,"333");
         p.setPrice(5.0);
         assertEquals(5.0 ,p.getPrice(),0.001);
     }
 
     @Test
     public void testGetDescr() {
-       Product p = new Product("", 0.0);
+       Product p = new Product("", 0.0,"333");
        p.setDescr("description");
        assertEquals("description",p.getDescr());
 
@@ -54,7 +54,7 @@ public class ProductTest {
 
     @Test
     public void testSetDescr() {
-        Product p = new Product("", 0.0);
+        Product p = new Product("", 0.0,"333");
        p.setDescr("description");
        assertEquals("description",p.getDescr());
     }

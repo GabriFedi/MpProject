@@ -9,7 +9,6 @@ import java.awt.Image;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
-import javax.swing.ImageIcon;
 import visitor.MyVisitor;
 
 /**
@@ -17,9 +16,11 @@ import visitor.MyVisitor;
  * @author work
  */
 public class ItemsPack implements Item{
+    private String serialNumber;
     private List<Item> items;
     private String name;
     private Image img;
+    private int qty;
 
     public ItemsPack(String name) {
         this.name = name;
@@ -60,7 +61,30 @@ public class ItemsPack implements Item{
     public Image getImage() {
         return img;
     }
+
+    @Override
+    public int getQty() {
+        return this.qty;
+    }
+
+    @Override
+    public void setQty(int i) {
+        this.qty = i;
+    }
     
+    @Override
+    public String getSerialNumber() {
+        return this.serialNumber;
+    }
+    
+     @Override 
+    public boolean equals(Object o){
+        if(! (o instanceof ItemsPack)){
+            ItemsPack temp = (ItemsPack) o;
+            return temp.getSerialNumber().equals(this.serialNumber);
+        }
+        return false;
+    }
     
     
 }

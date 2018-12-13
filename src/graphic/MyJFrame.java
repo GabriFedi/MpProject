@@ -3,16 +3,13 @@ package graphic;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import javax.swing.Box;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import mpproject.Item;
 import mpproject.Product;
+import mpproject.User;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,9 +26,12 @@ public class MyJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MyJFrame
      */
+    private User user;
+    
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
+        user = new User("Via porcospino 12");
         
     }
 
@@ -116,7 +116,7 @@ public class MyJFrame extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Product prodotto = new Product("Silvio", 100);
+        Product prodotto = new Product("Silvio", 100,"111");
         prodotto.setImg(new ImageIcon("imgs/silvio.jpeg").getImage());
         
         jPanel2.add(getItemPanel(prodotto));
@@ -146,8 +146,7 @@ public class MyJFrame extends javax.swing.JFrame {
         cartButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         cartButton.setIcon(new ImageIcon(new ImageIcon("imgs/addToCart.png").getImage().getScaledInstance(30,30,30)));
-       // cartButton.setText("imgs/addToCart.png");
-       // new BufferedImage() new ImageIcon("imgs/addToCart.png")
+        cartButton.addActionListener(e -> System.out.println());
         
         
         if(cont%3!=0) jPanel.add(Box.createRigidArea(new Dimension(235, 0)));

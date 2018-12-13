@@ -19,4 +19,7 @@ public interface Item {
     public Image getImage();
     public void add(Item... items);
     public void accept(MyVisitor v);
+    public int getQty();
+    public void setQty(int i);
+    public String getSerialNumber();
 }

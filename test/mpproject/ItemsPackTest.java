@@ -30,7 +30,7 @@ public class ItemsPackTest {
 
     @Test
     public void testGetItems() {
-       Product p = new Product("Name",0.0);
+       Product p = new Product("Name",0.0,"333");
        ItemsPack c = new ItemsPack("Envelope");
        c.add(p);
        
@@ -46,8 +46,8 @@ public class ItemsPackTest {
 
     @Test
     public void testGetPrice() {
-        Product p = new Product("Name",1.0);
-        Product t = new Product("Name",3.4);
+        Product p = new Product("Name",1.0,"333");
+        Product t = new Product("Name",3.4, "333");
         ItemsPack c = new ItemsPack("Envelope");
         c.add(p,t);
         assertEquals(c.getPrice(), 4.4, 0.001);

@@ -14,16 +14,20 @@ import visitor.MyVisitor;
  * @author work
  */
 public class Product implements Item{
+    private final String serialNumber;
     private final String name;
     private double price;
     private String descr;
     private Image img;
+    private int qty;
 
-    public Product(String name, double price) {
+    public Product(String name, double price, String serialNumber) {
         this.name = name;
         this.price = price;
+        this.serialNumber = serialNumber;
     }
     
+  
       public void setImg(Image img) {
         this.img = img;
     }
@@ -64,7 +68,32 @@ public class Product implements Item{
     public Image getImage() {
         return img;
     }
+
+    @Override
+    public int getQty() {
+        return this.qty;
+    }
+
+    @Override
+    public void setQty(int i) {
+        this.qty = i;
+    }
     
+    @Override 
+    public boolean equals(Object o){
+        if(! (o instanceof Product)){
+            Product temp = (Product) o;
+            return temp.getSerialNumber().equals(this.serialNumber);
+        }
+        return false;
+    }
+        
+    
+
+    @Override
+    public String getSerialNumber() {
+        return this.serialNumber;
+    }
     
     
     
