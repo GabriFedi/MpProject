@@ -5,9 +5,11 @@
  */
 package mpproject;
 
+import java.awt.Image;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
+import javax.swing.ImageIcon;
 import visitor.MyVisitor;
 
 /**
@@ -17,6 +19,7 @@ import visitor.MyVisitor;
 public class ItemsPack implements Item{
     private List<Item> items;
     private String name;
+    private Image img;
 
     public ItemsPack(String name) {
         this.name = name;
@@ -52,6 +55,11 @@ public class ItemsPack implements Item{
     public void accept(MyVisitor v) {
         getItems().forEach(e -> v.visit(e));
     }   
+
+    @Override
+    public Image getImage() {
+        return img;
+    }
     
     
     

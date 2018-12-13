@@ -5,6 +5,8 @@
  */
 package mpproject;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import visitor.MyVisitor;
 
 /**
@@ -15,11 +17,17 @@ public class Product implements Item{
     private final String name;
     private double price;
     private String descr;
+    private Image img;
 
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
     }
+    
+      public void setImg(Image img) {
+        this.img = img;
+    }
+    
 
     @Override
     public double getPrice() {
@@ -50,6 +58,11 @@ public class Product implements Item{
     @Override
     public void accept(MyVisitor v) {
         v.visit(this);
+    }
+
+    @Override
+    public Image getImage() {
+        return img;
     }
     
     

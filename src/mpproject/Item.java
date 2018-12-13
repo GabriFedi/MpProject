@@ -5,6 +5,8 @@
  */
 package mpproject;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import visitor.MyVisitor;
 
 /**
@@ -14,6 +16,7 @@ import visitor.MyVisitor;
 public interface Item {
     public String getName();
     public double getPrice();
+    public Image getImage();
     public void add(Item... items);
     public void accept(MyVisitor v);
 }

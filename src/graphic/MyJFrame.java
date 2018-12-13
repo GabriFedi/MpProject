@@ -2,10 +2,17 @@ package graphic;
 
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import mpproject.Item;
+import mpproject.Product;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,51 +32,7 @@ public class MyJFrame extends javax.swing.JFrame {
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
-        /* javax.swing.JButton jButton2 = new javax.swing.JButton();
-         jButton2.setText("cazzo1");
-         java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
-         gridBagConstraints.gridx = 0;
-         gridBagConstraints.gridy = 0;
-        // jPanel2.add(jButton2,gridBagConstraints);
-         
-         javax.swing.JButton jButton3 = new javax.swing.JButton();
-         jButton3.setText("cazzo2");
-         gridBagConstraints.gridx = 0;
-         gridBagConstraints.gridy = 4;
-        jPanel2.add(jButton3,gridBagConstraints);
         
-        javax.swing.JButton jButton4 = new javax.swing.JButton();
-         jButton4.setText("cazzo4");
-         gridBagConstraints.gridx = 4;
-         gridBagConstraints.gridy = 2;
-        jPanel2.add(jButton4,gridBagConstraints);
-        
-        javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
-        jPanel3.setSize(212, 100);
-        jPanel3.setBackground(Color.red);
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-         //jPanel3.add(jButton2);
-         
-          javax.swing.JLabel silvio = new javax.swing.JLabel();
-          silvio.setIcon(new ImageIcon("imgs/silvio.jpeg"));
-          jPanel3.add(silvio);
-          
-         jPanel2.add(jPanel3,gridBagConstraints);
-                 
-         javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
-
-        jPanel4.setSize(212, 100);
-        jPanel4.setBackground(Color.red);
-         gridBagConstraints.gridx = 2;
-         gridBagConstraints.gridy = 0;
-         javax.swing.JLabel silvioce = new javax.swing.JLabel();
-          silvioce.setIcon(new ImageIcon("imgs/silvio.jpeg"));
-          jPanel4.add(silvioce);
-         jPanel2.add(jPanel4,gridBagConstraints);
-        
-
-        */
     }
 
     /**
@@ -112,7 +75,7 @@ public class MyJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
+                .addContainerGap(306, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -150,31 +113,55 @@ public class MyJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        javax.swing.JPanel jPanel = new javax.swing.JPanel();
-        jPanel.setLayout(new javax.swing.BoxLayout(jPanel,javax.swing.BoxLayout.PAGE_AXIS));
-        javax.swing.JLabel silvio = new javax.swing.JLabel();
-        silvio.setIcon(new ImageIcon("imgs/silvio.jpeg"));
-        javax.swing.JLabel price = new javax.swing.JLabel();
-        price.setText("0.00$");
-        javax.swing.JLabel title = new javax.swing.JLabel();
-        title.setText("Silvio");
-        javax.swing.JButton cartButton = new javax.swing.JButton();
-        cartButton.setText("aggiungi");
+        Product prodotto = new Product("Silvio", 100);
+        prodotto.setImg(new ImageIcon("imgs/silvio.jpeg").getImage());
         
-        jPanel.add(silvio);
-        jPanel.add(title);
-        jPanel.add(price);
-        jPanel.add(cartButton);
-        
-        jPanel2.add(jPanel);
+        jPanel2.add(getItemPanel(prodotto));
         
         revalidate();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    int cont = 0;
+    private javax.swing.JPanel getItemPanel(Item p){
+        javax.swing.JPanel jPanel = new javax.swing.JPanel();
 
+        jPanel.setLayout(new javax.swing.BoxLayout(jPanel,javax.swing.BoxLayout.Y_AXIS));
+        javax.swing.JLabel img = new javax.swing.JLabel();
+        img.setIcon(new ImageIcon(p.getImage()));
+        img.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        javax.swing.JLabel title = new javax.swing.JLabel();
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setText(p.getName());
+        
+        javax.swing.JLabel price = new javax.swing.JLabel();
+        price.setAlignmentX(Component.CENTER_ALIGNMENT);
+        price.setText(p.getPrice() + " €" );
+        
+        javax.swing.JButton cartButton = new javax.swing.JButton();
+        cartButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        cartButton.setIcon(new ImageIcon(new ImageIcon("imgs/addToCart.png").getImage().getScaledInstance(30,30,30)));
+       // cartButton.setText("imgs/addToCart.png");
+       // new BufferedImage() new ImageIcon("imgs/addToCart.png")
+        
+        
+        if(cont%3!=0) jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
+           cont++;
+
+        cartButton.setName("zio");
+        jPanel.setBackground(Color.red);
+        jPanel.add(img);
+        jPanel.add(title);
+        jPanel.add(price);
+        jPanel.add(cartButton);
+        return jPanel;
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -206,7 +193,6 @@ public class MyJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MyJFrame().setVisible(true);
-                
             }
         });
     }
