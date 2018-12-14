@@ -9,7 +9,9 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import mpproject.Item;
 import mpproject.Product;
+import mpproject.StoreHouse;
 import mpproject.User;
+import observer.DrawProductObserver;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,12 +29,15 @@ public class MyJFrame extends javax.swing.JFrame {
      * Creates new form MyJFrame
      */
     private User user;
+    private StoreHouse store;
     
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
         user = new User("Via porcospino 12");
-        
+        store = new StoreHouse();
+        DrawProductObserver observer = new DrawProductObserver("xxx", this);
+        store.getRegister().addObserver(observer);
     }
 
     /**
@@ -118,13 +123,20 @@ public class MyJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         Product prodotto = new Product("Silvio", 100,"111");
         prodotto.setImg(new ImageIcon("imgs/silvio.jpeg").getImage());
+        Item p = prodotto;
+        store.addItem(p);
         
-        jPanel2.add(getItemPanel(prodotto));
         
-        revalidate();
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
     
+    public void drawNewProduct(Item p){
+        jPanel2.add(getItemPanel(p));
+        
+        revalidate();
+    }
     int cont = 0;
     private javax.swing.JPanel getItemPanel(Item p){
         javax.swing.JPanel jPanel = new javax.swing.JPanel();

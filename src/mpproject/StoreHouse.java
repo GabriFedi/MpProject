@@ -15,22 +15,22 @@ import observer.ObserverRegister;
 public class StoreHouse{
     
     private LinkedList<Item> items;
-    private ObserverRegister<StoreHouse> register;
+    private ObserverRegister<Item> register;
 
     public StoreHouse() {
         items = new LinkedList<>();
-        register = new ObserverRegister();;
+        register = new ObserverRegister();
     }
     
     
-    public ObserverRegister<StoreHouse> getRegister() {
+    public ObserverRegister<Item> getRegister() {
         return register;
     }
     
     public void addItem(Item item){
         if(!items.contains(item)){
             items.add(item);
-            
+            register.notifyObservers(item, "xxx");
         }
         else{
             Item temp = items.get(items.indexOf(item));
