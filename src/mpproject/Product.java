@@ -95,6 +95,12 @@ public class Product implements Item{
         return this.serialNumber;
     }
     
+    @Override
+    public String toString(){
+        return ("Name: "+ this.getName() + "\n" + 
+                "Price: " + this.getPrice()+ "\n");
+    }
+    
     
     
 }

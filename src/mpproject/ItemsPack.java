@@ -86,5 +86,11 @@ public class ItemsPack implements Item{
         return false;
     }
     
-    
+    @Override
+    public String toString(){
+        String str = "";
+        for(Item e : items)
+            str += e.toString();
+        return str;
+    }
 }

@@ -34,8 +34,8 @@ public class ObserverRegister <T> implements MyObservable<T>{
     }
 
     @Override
-    public void notifyObservers(T event, String code) {
-        observers.forEach(e -> e.update(event, code));
+    public void notifyObservers(T event, String... codes) {
+        observers.forEach(e -> e.update(event, codes));
     }   
     
 }

@@ -163,8 +163,9 @@ public class MyJFrame extends javax.swing.JFrame {
         
         if(cont%3!=0) jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
            cont++;
-
-        cartButton.setName("zio");
+           
+        cartButton.addActionListener(e -> user.getCart().addItem(p));
+        
         jPanel.setBackground(Color.red);
         jPanel.add(img);
         jPanel.add(title);

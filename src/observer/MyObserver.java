@@ -10,5 +10,5 @@ package observer;
  * @author work
  */
 public interface MyObserver <T> {
-    public void update(T event, String code);
+    public void update(T event, String... codes);
 }

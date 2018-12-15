@@ -22,9 +22,13 @@ public class DrawProductObserver implements MyObserver<Item>{
     }
 
     @Override
-    public void update(Item event, String code) {
-        if(this.code.equals(code))
-            jFrame.drawNewProduct(event);
+    public void update(Item event, String... codes) {
+       for(String c : codes){
+           if(c.equals(this.code)){
+               jFrame.drawNewProduct(event);
+               break;
+           }
+       }
     }
     
 }
