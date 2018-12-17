@@ -51,7 +51,7 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelList" max="32767" attributes="0"/>
+                      <Component id="jPanelList1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -70,7 +70,7 @@
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelList" max="32767" attributes="0"/>
+                      <Component id="jPanelList1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -85,27 +85,33 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanelList">
+        <Container class="javax.swing.JPanel" name="jPanelList1">
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButtonAddP" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonAddP1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="481" max="32767" attributes="0"/>
-                      <Component id="jButtonCheckOut" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonCheckOut1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonAdmin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="635" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonAdmin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonAddP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonCheckOut" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAddP1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonCheckOut1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="464" max="-2" attributes="0"/>
@@ -127,7 +133,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButtonAddP">
+            <Component class="javax.swing.JButton" name="jButtonAddP1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="aggiungi"/>
               </Properties>
@@ -135,12 +141,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddPActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonCheckOut">
+            <Component class="javax.swing.JButton" name="jButtonCheckOut1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Total: 0.00&#x20ac;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCheckOutActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonAdmin">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Admin"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAdminActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

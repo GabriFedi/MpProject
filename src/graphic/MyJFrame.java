@@ -55,11 +55,12 @@ public class MyJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelAll = new javax.swing.JPanel();
-        jPanelList = new javax.swing.JPanel();
+        jPanelList1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelProducts = new javax.swing.JPanel();
-        jButtonAddP = new javax.swing.JButton();
-        jButtonCheckOut = new javax.swing.JButton();
+        jButtonAddP1 = new javax.swing.JButton();
+        jButtonCheckOut1 = new javax.swing.JButton();
+        jButtonAdmin = new javax.swing.JButton();
         jPanelCheckOut = new javax.swing.JPanel();
         jPanelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -71,38 +72,50 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanelProducts.setLayout(new java.awt.GridLayout(0, 3));
         jScrollPane1.setViewportView(jPanelProducts);
 
-        jButtonAddP.setText("aggiungi");
-        jButtonAddP.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddP1.setText("aggiungi");
+        jButtonAddP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddPActionPerformed(evt);
             }
         });
 
-        jButtonCheckOut.setText("Total: 0.00€");
-        jButtonCheckOut.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCheckOut1.setText("Total: 0.00€");
+        jButtonCheckOut1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCheckOutActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanelListLayout = new javax.swing.GroupLayout(jPanelList);
-        jPanelList.setLayout(jPanelListLayout);
-        jPanelListLayout.setHorizontalGroup(
-            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jButtonAdmin.setText("Admin");
+        jButtonAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdminActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelList1Layout = new javax.swing.GroupLayout(jPanelList1);
+        jPanelList1.setLayout(jPanelList1Layout);
+        jPanelList1Layout.setHorizontalGroup(
+            jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(jPanelListLayout.createSequentialGroup()
-                .addComponent(jButtonAddP)
+            .addGroup(jPanelList1Layout.createSequentialGroup()
+                .addComponent(jButtonAddP1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
-                .addComponent(jButtonCheckOut)
+                .addComponent(jButtonCheckOut1)
                 .addGap(32, 32, 32))
+            .addGroup(jPanelList1Layout.createSequentialGroup()
+                .addComponent(jButtonAdmin)
+                .addContainerGap(635, Short.MAX_VALUE))
         );
-        jPanelListLayout.setVerticalGroup(
-            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelListLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
-                .addGroup(jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAddP)
-                    .addComponent(jButtonCheckOut))
+        jPanelList1Layout.setVerticalGroup(
+            jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelList1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAddP1)
+                    .addComponent(jButtonCheckOut1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -158,7 +171,7 @@ public class MyJFrame extends javax.swing.JFrame {
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
@@ -172,7 +185,7 @@ public class MyJFrame extends javax.swing.JFrame {
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
@@ -200,22 +213,25 @@ public class MyJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+    private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
+        // TODO add your handling code here:
+        this.jPanelList.setVisible(false);
+    }//GEN-LAST:event_jButtonCheckOutActionPerformed
+
     private void jButtonAddPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPActionPerformed
         // TODO add your handling code here:
         Product prodotto = new Product("Silvio", 100,"111");
         prodotto.setImg(new ImageIcon("imgs/silvio.jpeg").getImage());
         Item p = prodotto;
         store.addItem(p);
-        
+
     }//GEN-LAST:event_jButtonAddPActionPerformed
 
-    private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
+    private void jButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdminActionPerformed
         // TODO add your handling code here:
-        this.jPanelList.setVisible(false);
-        this.jPanelCheckOut.setVisible(true);
-    }//GEN-LAST:event_jButtonCheckOutActionPerformed
-    
+    }//GEN-LAST:event_jButtonAdminActionPerformed
+        
     public void drawNewProduct(Item p){
         jPanelProducts.add(getItemPanel(p));
          
@@ -306,10 +322,14 @@ public class MyJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddP;
+    private javax.swing.JButton jButtonAddP1;
+    private javax.swing.JButton jButtonAdmin;
     private javax.swing.JButton jButtonCheckOut;
+    private javax.swing.JButton jButtonCheckOut1;
     private javax.swing.JPanel jPanelAll;
     private javax.swing.JPanel jPanelCheckOut;
     private javax.swing.JPanel jPanelList;
+    private javax.swing.JPanel jPanelList1;
     private javax.swing.JPanel jPanelProducts;
     private javax.swing.JPanel jPanelTable;
     private javax.swing.JScrollPane jScrollPane1;
