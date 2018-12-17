@@ -28,15 +28,11 @@ public class SetUpCheckout implements MyVisitor<Cart>{
     
     @Override
     public void visit(Cart obj) {
-        Vector row = new Vector();
    
-        model.addRow(row);
         obj.getItems().forEach(e -> {
-            row.add(e.getImage());
-            row.add(e.getPrice());
-            row.add(e.getQty());
-            row.removeAllElements();
-           
+            
+            model.addRow(new Object[]{e.getImage(), e.getPrice(), e.getQty(),e.getQty()});
+            
         });
     }
     

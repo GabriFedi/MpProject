@@ -13,6 +13,8 @@ import mpproject.StoreHouse;
 import mpproject.User;
 import observer.DrawProductObserver;
 import visitor.CartPriceVisitor;
+import visitor.MyVisitor;
+import visitor.SetUpCheckout;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -240,6 +242,12 @@ public class MyJFrame extends javax.swing.JFrame {
     private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
         // TODO add your handling code here:
         this.jPanelList.setVisible(false);
+        this.jPanelCheckOut.setVisible(true);
+        MyVisitor v = new SetUpCheckout(jTableCheckOut);
+        v.visit(user.getCart());
+        
+        revalidate();
+        
     }//GEN-LAST:event_jButtonCheckOutActionPerformed
         
     public void drawNewProduct(Item p){
