@@ -37,7 +37,7 @@ public class MyJFrame extends javax.swing.JFrame {
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
-        this.jButtonCheckOut.setIcon(new ImageIcon(new ImageIcon("imgs/checkOut.png").getImage().getScaledInstance(30,30,30)));
+        this.jButtonCheckOut1.setIcon(new ImageIcon(new ImageIcon("imgs/checkOut.png").getImage().getScaledInstance(30,30,30)));
         user = new User("Via porcospino 12");
         store = new StoreHouse();
         DrawProductObserver observer = new DrawProductObserver("xxx", this);
@@ -214,11 +214,6 @@ public class MyJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
-        // TODO add your handling code here:
-        this.jPanelList.setVisible(false);
-    }//GEN-LAST:event_jButtonCheckOutActionPerformed
-
     private void jButtonAddPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPActionPerformed
         // TODO add your handling code here:
         Product prodotto = new Product("Silvio", 100,"111");
@@ -231,6 +226,11 @@ public class MyJFrame extends javax.swing.JFrame {
     private void jButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAdminActionPerformed
+
+    private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
+        // TODO add your handling code here:
+        this.jPanelList.setVisible(false);
+    }//GEN-LAST:event_jButtonCheckOutActionPerformed
         
     public void drawNewProduct(Item p){
         jPanelProducts.add(getItemPanel(p));
@@ -282,7 +282,7 @@ public class MyJFrame extends javax.swing.JFrame {
     }
     
     public void  updateTotal(double total){
-            this.jButtonCheckOut.setText("Total: " +total + " €");
+            this.jButtonCheckOut1.setText("Total: " +total + " €");
         }
     
     /**
