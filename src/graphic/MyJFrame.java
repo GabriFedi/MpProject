@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import mpproject.Item;
 import mpproject.Product;
 import mpproject.StoreHouse;
@@ -30,15 +31,19 @@ public class MyJFrame extends javax.swing.JFrame {
      */
     private User user;
     private StoreHouse store;
-    int numProducts = 0;
+    private boolean adminMode;
+    private int numProducts;
     
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
+        adminMode = false;
+        numProducts = 0;
         user = new User("Via porcospino 12");
         store = new StoreHouse();
         DrawProductObserver observer = new DrawProductObserver("xxx", this);
         store.getRegister().addObserver(observer);
+        b_addProduct.setVisible(false);
     }
 
     /**
@@ -49,16 +54,79 @@ public class MyJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
+        adminLoginWindow = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        t_name = new javax.swing.JTextField();
+        t_password = new javax.swing.JPasswordField();
+        b_confirmLogin = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        b_addProduct = new javax.swing.JButton();
+        b_adminLogin = new javax.swing.JButton();
+
+        adminLoginWindow.setTitle("Admin Login");
+        adminLoginWindow.setAlwaysOnTop(true);
+        adminLoginWindow.setMinimumSize(new java.awt.Dimension(100, 200));
+        adminLoginWindow.setModal(true);
+        adminLoginWindow.setResizable(false);
+        adminLoginWindow.setSize(new java.awt.Dimension(400, 200));
+
+        jLabel3.setText("Nome: ");
+
+        jLabel4.setText("Password: ");
+
+        t_name.setText("admin");
+
+        b_confirmLogin.setText("Conferma");
+        b_confirmLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_confirmLoginActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout adminLoginWindowLayout = new javax.swing.GroupLayout(adminLoginWindow.getContentPane());
+        adminLoginWindow.getContentPane().setLayout(adminLoginWindowLayout);
+        adminLoginWindowLayout.setHorizontalGroup(
+            adminLoginWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminLoginWindowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adminLoginWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(adminLoginWindowLayout.createSequentialGroup()
+                        .addGroup(adminLoginWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(adminLoginWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(t_name, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(t_password)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminLoginWindowLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(b_confirmLogin)))
+                .addContainerGap())
+        );
+        adminLoginWindowLayout.setVerticalGroup(
+            adminLoginWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminLoginWindowLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(adminLoginWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(t_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(adminLoginWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(b_confirmLogin)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Shop Fedi Gasparri");
         setResizable(false);
 
         jLabel1.setText("Zizzo Panizzo Farmacia");
@@ -68,10 +136,17 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridLayout(0, 3));
         jScrollPane1.setViewportView(jPanel2);
 
-        jButton1.setText("aggiungi");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        b_addProduct.setText("Aggiungi");
+        b_addProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                b_addProductActionPerformed(evt);
+            }
+        });
+
+        b_adminLogin.setText("Admin");
+        b_adminLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_adminLoginActionPerformed(evt);
             }
         });
 
@@ -80,28 +155,33 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(306, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(47, 47, 47))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(b_adminLogin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(190, 190, 190))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(190, 190, 190))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(b_addProduct)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(b_adminLogin))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(b_addProduct)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -120,20 +200,44 @@ public class MyJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void b_addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_addProductActionPerformed
+        
         Product prodotto = new Product("Silvio", 100,"111");
         prodotto.setImg(new ImageIcon("imgs/silvio.jpeg").getImage());
         Item p = prodotto;
         store.addItem(p);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_b_addProductActionPerformed
+
+    private void b_adminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_adminLoginActionPerformed
+        if(!adminMode){
+            t_name.setText("");
+            t_password.setText("");
+            adminLoginWindow.setVisible(true);
+        }
+        else{
+            b_adminLogin.setText("Admin");
+            b_addProduct.setVisible(false);
+        }
+    }//GEN-LAST:event_b_adminLoginActionPerformed
+
+    private void b_confirmLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_confirmLoginActionPerformed
+        String username = t_name.getText();
+        String password = t_password.getText();
+        if(username.equals("admin") && password.equals("admin")){
+            b_addProduct.setVisible(true);
+            b_adminLogin.setText("Logout");
+            adminMode = true;
+            JOptionPane.showMessageDialog(this, "Login effettuato con successo.", "Login ok", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Username o password errati.", "Errore login", JOptionPane.ERROR_MESSAGE);
+        adminLoginWindow.setVisible(false);
+    }//GEN-LAST:event_b_confirmLoginActionPerformed
     
     public void drawNewProduct(Item p){
         jPanel2.add(getItemPanel(p));
         revalidate();
     }
-    
-    
     
     private javax.swing.JPanel getItemPanel(Item p){
         javax.swing.JPanel jPanel = new javax.swing.JPanel();
@@ -208,11 +312,18 @@ public class MyJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog adminLoginWindow;
+    private javax.swing.JButton b_addProduct;
+    private javax.swing.JButton b_adminLogin;
+    private javax.swing.JButton b_confirmLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField t_name;
+    private javax.swing.JPasswordField t_password;
     // End of variables declaration//GEN-END:variables
 }
