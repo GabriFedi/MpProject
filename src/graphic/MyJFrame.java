@@ -30,6 +30,7 @@ public class MyJFrame extends javax.swing.JFrame {
      */
     private User user;
     private StoreHouse store;
+    int numProducts = 0;
     
     GridLayout experimentLayout;
     public MyJFrame() {
@@ -125,19 +126,15 @@ public class MyJFrame extends javax.swing.JFrame {
         prodotto.setImg(new ImageIcon("imgs/silvio.jpeg").getImage());
         Item p = prodotto;
         store.addItem(p);
-        
-        
-        
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public void drawNewProduct(Item p){
         jPanel2.add(getItemPanel(p));
-        
         revalidate();
     }
-    int cont = 0;
+    
+    
+    
     private javax.swing.JPanel getItemPanel(Item p){
         javax.swing.JPanel jPanel = new javax.swing.JPanel();
 
@@ -161,8 +158,8 @@ public class MyJFrame extends javax.swing.JFrame {
         cartButton.addActionListener(e -> System.out.println());
         
         
-        if(cont%3!=0) jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
-           cont++;
+        if(numProducts%3!=0) jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
+           numProducts++;
            
         cartButton.addActionListener(e -> user.getCart().addItem(p));
         
@@ -203,6 +200,7 @@ public class MyJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MyJFrame().setVisible(true);
             }
