@@ -39,7 +39,7 @@ public class Cart {
         this.saleMethod = saleMethod;
     }
 
-    public Stream<Item> getProducts() {
+    public Stream<Item> getItems() {
         return products.stream();
     }
     

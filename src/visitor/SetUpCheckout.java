@@ -5,29 +5,27 @@
  */
 package visitor;
 
+import javax.swing.JTable;
 import mpproject.Cart;
-import mpproject.Item;
 
 /**
  *
  * @author work
  */
-public class CartPriceVisitor implements MyVisitor<Cart>{
-    double price;
+public class SetUpCheckout implements MyVisitor<Cart>{
 
-    public CartPriceVisitor() {
-        price = 0;
-    }
+    private javax.swing.JTable jTable;
 
-    public double getPrice() {
-        return price;
+    public SetUpCheckout(JTable jTable) {
+        this.jTable = jTable;
     }
+    
     
     @Override
     public void visit(Cart obj) {
-        price = obj.getItems().mapToDouble(Item::getPrice).sum();
+        obj.getItems().forEach(e -> {
+           
+        });
     }
-
-   
     
 }
