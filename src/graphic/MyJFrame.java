@@ -11,10 +11,8 @@ import mpproject.Item;
 import mpproject.Product;
 import mpproject.StoreHouse;
 import mpproject.User;
-import observer.ConsumerJFrameObserver;
 import observer.DrawProductObserver;
 import visitor.CartPriceVisitor;
-import visitor.MyVisitor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,7 +35,7 @@ public class MyJFrame extends javax.swing.JFrame {
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
-        this.jButtonCheckOut1.setIcon(new ImageIcon(new ImageIcon("imgs/checkOut.png").getImage().getScaledInstance(30,30,30)));
+        this.jButtonCheckOut.setIcon(new ImageIcon(new ImageIcon("imgs/checkOut.png").getImage().getScaledInstance(30,30,30)));
         user = new User("Via porcospino 12");
         store = new StoreHouse();
         DrawProductObserver observer = new DrawProductObserver("xxx", this);
@@ -54,17 +52,29 @@ public class MyJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jPanelAll = new javax.swing.JPanel();
-        jPanelList1 = new javax.swing.JPanel();
+        jPanelList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelProducts = new javax.swing.JPanel();
         jButtonAddP1 = new javax.swing.JButton();
-        jButtonCheckOut1 = new javax.swing.JButton();
+        jButtonCheckOut = new javax.swing.JButton();
         jButtonAdmin = new javax.swing.JButton();
         jPanelCheckOut = new javax.swing.JPanel();
         jPanelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCheckOut = new javax.swing.JTable();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -79,8 +89,8 @@ public class MyJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonCheckOut1.setText("Total: 0.00€");
-        jButtonCheckOut1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCheckOut.setText("Total: 0.00€");
+        jButtonCheckOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCheckOutActionPerformed(evt);
             }
@@ -93,29 +103,29 @@ public class MyJFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelList1Layout = new javax.swing.GroupLayout(jPanelList1);
-        jPanelList1.setLayout(jPanelList1Layout);
-        jPanelList1Layout.setHorizontalGroup(
-            jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelListLayout = new javax.swing.GroupLayout(jPanelList);
+        jPanelList.setLayout(jPanelListLayout);
+        jPanelListLayout.setHorizontalGroup(
+            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(jPanelList1Layout.createSequentialGroup()
+            .addGroup(jPanelListLayout.createSequentialGroup()
                 .addComponent(jButtonAddP1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
-                .addComponent(jButtonCheckOut1)
+                .addComponent(jButtonCheckOut)
                 .addGap(32, 32, 32))
-            .addGroup(jPanelList1Layout.createSequentialGroup()
+            .addGroup(jPanelListLayout.createSequentialGroup()
                 .addComponent(jButtonAdmin)
                 .addContainerGap(635, Short.MAX_VALUE))
         );
-        jPanelList1Layout.setVerticalGroup(
-            jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelList1Layout.createSequentialGroup()
+        jPanelListLayout.setVerticalGroup(
+            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelListLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAddP1)
-                    .addComponent(jButtonCheckOut1))
+                    .addComponent(jButtonCheckOut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -171,7 +181,7 @@ public class MyJFrame extends javax.swing.JFrame {
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
@@ -181,11 +191,11 @@ public class MyJFrame extends javax.swing.JFrame {
         );
         jPanelAllLayout.setVerticalGroup(
             jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
@@ -282,7 +292,7 @@ public class MyJFrame extends javax.swing.JFrame {
     }
     
     public void  updateTotal(double total){
-            this.jButtonCheckOut1.setText("Total: " +total + " €");
+            this.jButtonCheckOut.setText("Total: " +total + " €");
         }
     
     /**
@@ -321,15 +331,13 @@ public class MyJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAddP;
     private javax.swing.JButton jButtonAddP1;
     private javax.swing.JButton jButtonAdmin;
     private javax.swing.JButton jButtonCheckOut;
-    private javax.swing.JButton jButtonCheckOut1;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JPanel jPanelAll;
     private javax.swing.JPanel jPanelCheckOut;
     private javax.swing.JPanel jPanelList;
-    private javax.swing.JPanel jPanelList1;
     private javax.swing.JPanel jPanelProducts;
     private javax.swing.JPanel jPanelTable;
     private javax.swing.JScrollPane jScrollPane1;
