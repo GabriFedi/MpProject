@@ -7,13 +7,16 @@
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Item.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/test/mpproject/CartTest.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/graphic/MyJFrame.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/SetUpCheckout.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/MpProject.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Cart.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/User.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/ItemsPack.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/test/mpproject/ItemsPackTest.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/ObserverRegister.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Product.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/StoreHouse.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/CartPriceVisitor.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObserver.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObservable.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/test/mpproject/ProductTest.java</file>

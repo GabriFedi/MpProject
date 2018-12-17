@@ -6,6 +6,8 @@
 package visitor;
 
 import java.util.Vector;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import mpproject.Cart;
@@ -16,23 +18,36 @@ import mpproject.Cart;
  */
 public class SetUpCheckout implements MyVisitor<Cart>{
 
-    private DefaultTableModel model;
+    private javax.swing.JPanel panel;
     
 
-    public SetUpCheckout(JTable jTable) {
-        model = (DefaultTableModel) jTable.getModel();
+    public SetUpCheckout(javax.swing.JPanel panel) {
 
+        this.panel = panel;
         
     }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+    
+    
     
     
     @Override
     public void visit(Cart obj) {
    
         obj.getItems().forEach(e -> {
+            javax.swing.JPanel newpanel = new javax.swing.JPanel();
+            newpanel.setLayout(new javax.swing.BoxLayout(newpanel,javax.swing.BoxLayout.Y_AXIS));
+            javax.swing.JLabel img = new javax.swing.JLabel();
+            img.setIcon(new ImageIcon(e.getImage()));
             
-            model.addRow(new Object[]{e.getImage(), e.getPrice(), e.getQty(),e.getQty()});
-            
+            javax.swing.JLabel name = new javax.swing.JLabel();
+            name.setText(e.getName());
+            newpanel.add(name);
+            newpanel.add(img);
+            panel.add(newpanel);
         });
     }
     
