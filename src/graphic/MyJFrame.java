@@ -11,7 +11,10 @@ import mpproject.Item;
 import mpproject.Product;
 import mpproject.StoreHouse;
 import mpproject.User;
+import observer.ConsumerJFrameObserver;
 import observer.DrawProductObserver;
+import visitor.CartPriceVisitor;
+import visitor.MyVisitor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,10 +37,12 @@ public class MyJFrame extends javax.swing.JFrame {
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
+        this.jButtonCheckOut.setIcon(new ImageIcon(new ImageIcon("imgs/checkOut.png").getImage().getScaledInstance(30,30,30)));
         user = new User("Via porcospino 12");
         store = new StoreHouse();
         DrawProductObserver observer = new DrawProductObserver("xxx", this);
         store.getRegister().addObserver(observer);
+        
     }
 
     /**
@@ -48,95 +53,175 @@ public class MyJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanelAll = new javax.swing.JPanel();
+        jPanelList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jPanelProducts = new javax.swing.JPanel();
+        jButtonAddP = new javax.swing.JButton();
+        jButtonCheckOut = new javax.swing.JButton();
+        jPanelCheckOut = new javax.swing.JPanel();
+        jPanelTable = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableCheckOut = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Zizzo Panizzo Farmacia");
+        jPanelProducts.setLayout(new java.awt.GridLayout(0, 3));
+        jScrollPane1.setViewportView(jPanelProducts);
 
-        jLabel2.setText("Total:");
-
-        jPanel2.setLayout(new java.awt.GridLayout(0, 3));
-        jScrollPane1.setViewportView(jPanel2);
-
-        jButton1.setText("aggiungi");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddP.setText("aggiungi");
+        jButtonAddP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAddPActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jButtonCheckOut.setText("Total: 0.00€");
+        jButtonCheckOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckOutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelListLayout = new javax.swing.GroupLayout(jPanelList);
+        jPanelList.setLayout(jPanelListLayout);
+        jPanelListLayout.setHorizontalGroup(
+            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(306, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(190, 190, 190))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelListLayout.createSequentialGroup()
+                .addComponent(jButtonAddP)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
+                .addComponent(jButtonCheckOut)
+                .addGap(32, 32, 32))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+        jPanelListLayout.setVerticalGroup(
+            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelListLayout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addGroup(jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAddP)
+                    .addComponent(jButtonCheckOut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanelCheckOut.setPreferredSize(new java.awt.Dimension(732, 568));
+
+        jTableCheckOut.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Product", "Price", "Quantity", "Actions"
+            }
+        ));
+        jTableCheckOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(jTableCheckOut);
+
+        javax.swing.GroupLayout jPanelTableLayout = new javax.swing.GroupLayout(jPanelTable);
+        jPanelTable.setLayout(jPanelTableLayout);
+        jPanelTableLayout.setHorizontalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+        );
+        jPanelTableLayout.setVerticalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTableLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelCheckOutLayout = new javax.swing.GroupLayout(jPanelCheckOut);
+        jPanelCheckOut.setLayout(jPanelCheckOutLayout);
+        jPanelCheckOutLayout.setHorizontalGroup(
+            jPanelCheckOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanelCheckOutLayout.setVerticalGroup(
+            jPanelCheckOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCheckOutLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelAllLayout = new javax.swing.GroupLayout(jPanelAll);
+        jPanelAll.setLayout(jPanelAllLayout);
+        jPanelAllLayout.setHorizontalGroup(
+            jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 744, Short.MAX_VALUE)
+            .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAllLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAllLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanelAllLayout.setVerticalGroup(
+            jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 580, Short.MAX_VALUE)
+            .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAllLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAllLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanelAll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanelAll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonAddPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPActionPerformed
         // TODO add your handling code here:
         Product prodotto = new Product("Silvio", 100,"111");
         prodotto.setImg(new ImageIcon("imgs/silvio.jpeg").getImage());
         Item p = prodotto;
         store.addItem(p);
         
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonAddPActionPerformed
+
+    private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
+        // TODO add your handling code here:
+        this.jPanelList.setVisible(false);
+        this.jPanelCheckOut.setVisible(true);
+    }//GEN-LAST:event_jButtonCheckOutActionPerformed
     
     public void drawNewProduct(Item p){
-        jPanel2.add(getItemPanel(p));
-        
+        jPanelProducts.add(getItemPanel(p));
+         
         revalidate();
     }
+    
     int cont = 0;
     private javax.swing.JPanel getItemPanel(Item p){
         javax.swing.JPanel jPanel = new javax.swing.JPanel();
@@ -164,7 +249,12 @@ public class MyJFrame extends javax.swing.JFrame {
         if(cont%3!=0) jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
            cont++;
            
-        cartButton.addActionListener(e -> user.getCart().addItem(p));
+        cartButton.addActionListener(e -> {
+            user.getCart().addItem(p);
+            CartPriceVisitor v = new CartPriceVisitor();
+            user.getCart().accept(v);
+            this.updateTotal(v.getPrice());
+        });
         
         jPanel.setBackground(Color.red);
         jPanel.add(img);
@@ -174,6 +264,11 @@ public class MyJFrame extends javax.swing.JFrame {
         return jPanel;
         
     }
+    
+    public void  updateTotal(double total){
+            this.jButtonCheckOut.setText("Total: " +total + " €");
+        }
+    
     /**
      * @param args the command line arguments
      */
@@ -210,11 +305,15 @@ public class MyJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jButtonAddP;
+    private javax.swing.JButton jButtonCheckOut;
+    private javax.swing.JPanel jPanelAll;
+    private javax.swing.JPanel jPanelCheckOut;
+    private javax.swing.JPanel jPanelList;
+    private javax.swing.JPanel jPanelProducts;
+    private javax.swing.JPanel jPanelTable;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableCheckOut;
     // End of variables declaration//GEN-END:variables
 }

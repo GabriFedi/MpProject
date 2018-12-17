@@ -7,6 +7,8 @@ package mpproject;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
+import visitor.MyVisitor;
 
 /**
  *
@@ -24,6 +26,10 @@ public class Cart {
     public void addItem(Item p){
         products.add(p);
     }
+    
+    public void removeItem(Item p){
+        products.remove(p);
+    }
 
     public void setPaymentMethod(Payment paymentMethod) {
         this.paymentMethod = paymentMethod;
@@ -32,14 +38,20 @@ public class Cart {
     public void setSaleMethod(Sale saleMethod) {
         this.saleMethod = saleMethod;
     }
-    
-    public double getPrice(){
-        return products.stream().mapToDouble(Item::getPrice).sum();
+
+    public Stream<Item> getProducts() {
+        return products.stream();
     }
     
-    public boolean pay(){
-        double finalPrice = saleMethod.getDiscountedPrice(getPrice());
-        return paymentMethod.pay(finalPrice);
+    
+    
+   // public boolean pay(){
+       // double finalPrice = saleMethod.getDiscountedPrice(getPrice());
+       // return paymentMethod.pay(finalPrice);
+  //  }
+    
+    public void accept(MyVisitor v){
+        v.visit(this);
     }
     
     @Override
