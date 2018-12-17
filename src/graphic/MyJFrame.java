@@ -13,6 +13,8 @@ import mpproject.StoreHouse;
 import mpproject.User;
 import observer.DrawProductObserver;
 import visitor.CartPriceVisitor;
+import visitor.MyVisitor;
+import visitor.SetUpCheckout;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,7 +57,7 @@ public class MyJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelAll = new javax.swing.JPanel();
-        jPanelList1 = new javax.swing.JPanel();
+        jPanelList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelProducts = new javax.swing.JPanel();
         jButtonAddP1 = new javax.swing.JButton();
@@ -93,28 +95,28 @@ public class MyJFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelList1Layout = new javax.swing.GroupLayout(jPanelList1);
-        jPanelList1.setLayout(jPanelList1Layout);
-        jPanelList1Layout.setHorizontalGroup(
-            jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelListLayout = new javax.swing.GroupLayout(jPanelList);
+        jPanelList.setLayout(jPanelListLayout);
+        jPanelListLayout.setHorizontalGroup(
+            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(jPanelList1Layout.createSequentialGroup()
+            .addGroup(jPanelListLayout.createSequentialGroup()
                 .addComponent(jButtonAdmin)
                 .addContainerGap(670, Short.MAX_VALUE))
-            .addGroup(jPanelList1Layout.createSequentialGroup()
+            .addGroup(jPanelListLayout.createSequentialGroup()
                 .addComponent(jButtonAddP1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCheckOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanelList1Layout.setVerticalGroup(
-            jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelList1Layout.createSequentialGroup()
+        jPanelListLayout.setVerticalGroup(
+            jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelListLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(jPanelList1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAddP1)
-                    .addComponent(jButtonCheckOut1))
+                .addGroup(jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonCheckOut1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonAddP1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -166,11 +168,11 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanelAll.setLayout(jPanelAllLayout);
         jPanelAllLayout.setHorizontalGroup(
             jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 744, Short.MAX_VALUE)
+            .addGap(0, 749, Short.MAX_VALUE)
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
@@ -184,7 +186,7 @@ public class MyJFrame extends javax.swing.JFrame {
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
@@ -229,7 +231,11 @@ public class MyJFrame extends javax.swing.JFrame {
 
     private void jButtonCheckOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOut1ActionPerformed
         // TODO add your handling code here:
-        this.jPanelList1.setVisible(false);
+        this.jPanelList.setVisible(false);
+        this.jPanelCheckOut.setVisible(true);
+        MyVisitor v = new SetUpCheckout(jTableCheckOut);
+        v.visit(user.getCart());
+        revalidate();
     }//GEN-LAST:event_jButtonCheckOut1ActionPerformed
         
     public void drawNewProduct(Item p){
@@ -326,7 +332,7 @@ public class MyJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCheckOut1;
     private javax.swing.JPanel jPanelAll;
     private javax.swing.JPanel jPanelCheckOut;
-    private javax.swing.JPanel jPanelList1;
+    private javax.swing.JPanel jPanelList;
     private javax.swing.JPanel jPanelProducts;
     private javax.swing.JPanel jPanelTable;
     private javax.swing.JScrollPane jScrollPane1;
