@@ -45,7 +45,8 @@ public class MyJFrame extends javax.swing.JFrame {
         DrawProductObserver observer = new DrawProductObserver("xxx", this);
         store.getRegister().addObserver(observer);
         adminMode = false;
-        jButtonAddP.setVisible(false);
+        jPanelCheckOut.setVisible(false);
+        //jButtonAddP.setVisible(false);
     }
 
     /**
@@ -198,7 +199,7 @@ public class MyJFrame extends javax.swing.JFrame {
 
         jPanelCheckOut.setPreferredSize(new java.awt.Dimension(732, 568));
 
-        jPanelItemsCheckOut.setLayout(new java.awt.GridLayout(0, 1));
+        jPanelItemsCheckOut.setLayout(new javax.swing.BoxLayout(jPanelItemsCheckOut, javax.swing.BoxLayout.PAGE_AXIS));
         jScrollPane2.setViewportView(jPanelItemsCheckOut);
 
         javax.swing.GroupLayout jPanelCheckOutLayout = new javax.swing.GroupLayout(jPanelCheckOut);
@@ -230,7 +231,7 @@ public class MyJFrame extends javax.swing.JFrame {
         );
         jPanelAllLayout.setVerticalGroup(
             jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGap(0, 602, Short.MAX_VALUE)
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
@@ -350,8 +351,10 @@ public class MyJFrame extends javax.swing.JFrame {
         cartButton.addActionListener(e -> System.out.println());
         
         
-        if(cont%3!=0) jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
-           cont++;
+        if(cont%3!=0) 
+            jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
+        
+        cont++;
            
         cartButton.addActionListener(e -> {
             user.getCart().addItem(p);
@@ -365,6 +368,7 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanel.add(title);
         jPanel.add(price);
         jPanel.add(cartButton);
+        jPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         return jPanel;
         
     }
