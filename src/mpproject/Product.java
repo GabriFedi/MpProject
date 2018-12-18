@@ -13,7 +13,7 @@ import visitor.MyVisitor;
  *
  * @author work
  */
-public class Product implements Item{
+public class Product implements Item, Cloneable{
     private final String serialNumber;
     private final String name;
     private double price;
@@ -25,6 +25,7 @@ public class Product implements Item{
         this.name = name;
         this.price = price;
         this.serialNumber = serialNumber;
+        this.qty = 1;
     }
     
   
@@ -35,7 +36,7 @@ public class Product implements Item{
 
     @Override
     public double getPrice() {
-        return price;
+        return price * qty;
     }
 
     public void setPrice(double price) {
@@ -81,7 +82,7 @@ public class Product implements Item{
     
     @Override 
     public boolean equals(Object o){
-        if(! (o instanceof Product)){
+        if(o instanceof Product){
             Product temp = (Product) o;
             return temp.getSerialNumber().equals(this.serialNumber);
         }
@@ -101,6 +102,11 @@ public class Product implements Item{
                 "Price: " + this.getPrice()+ "\n");
     }
     
-    
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Product cloneP = new Product(this.name, this.price, this.serialNumber);
+        cloneP.setQty(this.getQty());
+        return cloneP;
+    }
     
 }
