@@ -6,7 +6,6 @@
 package mpproject;
 
 import java.awt.Image;
-import javax.swing.ImageIcon;
 import visitor.MyVisitor;
 
 /**
@@ -22,4 +21,5 @@ public interface Item {
     public int getQty();
     public void setQty(int i);
     public String getSerialNumber();
+    public Item clone();
 }

@@ -14,7 +14,7 @@ import visitor.MyVisitor;
  *
  * @author work
  */
-public class Product implements Item, Cloneable{
+public class Product implements Item{
     private final String serialNumber;
     private final String name;
     private double price;
@@ -28,9 +28,8 @@ public class Product implements Item, Cloneable{
         this.serialNumber = serialNumber;
         this.qty = 1;
     }
-    
   
-      public void setImg(Image img) {
+    public void setImg(Image img) {
         this.img = img;
     }
     
@@ -89,9 +88,7 @@ public class Product implements Item, Cloneable{
         }
         return false;
     }
-        
     
-
     @Override
     public String getSerialNumber() {
         return this.serialNumber;
@@ -102,12 +99,12 @@ public class Product implements Item, Cloneable{
         return ("Name: "+ this.getName() + "\n" + 
                 "Price: " + this.getPrice()+ "\n");
     }
-    
+
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        Product cloneP = new Product(this.name, this.price, this.serialNumber);
-        cloneP.setQty(this.getQty());
-        return cloneP;
+    public Item clone() {
+        Product p = new Product(name, price, serialNumber);
+        p.setImg(img);
+        return p;
     }
     
 }

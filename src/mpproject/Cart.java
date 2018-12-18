@@ -29,7 +29,7 @@ public class Cart {
             tempP.setQty(p.getQty() + 1);
         }
         else{
-            products.add(p);
+            products.add(p.clone());
         }
     }
     
