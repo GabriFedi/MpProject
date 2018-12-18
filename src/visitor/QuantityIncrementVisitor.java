@@ -7,24 +7,30 @@ package visitor;
 
 import mpproject.Cart;
 import mpproject.Item;
+import mpproject.ItemsPack;
+import mpproject.Product;
 
 /**
  *
  * @author alessandro
  */
-public class QuantityIncrementVisitor implements MyVisitor<Item>{
+public class QuantityIncrementVisitor implements ItemVisitor{
     
     private int qtyIncrement;
     
     public QuantityIncrementVisitor(int qtyIncrement){
         this.qtyIncrement = qtyIncrement;
     }
-    
+  
+
     @Override
-    public void visit(Item obj) {
-        obj.setQty(obj.getQty()+qtyIncrement);
-        if(obj.getQty() == 0)
-            obj.setQty(1);
+    public void visit(Product p) {
+        p.setQty(qtyIncrement);
+    }
+
+    @Override
+    public void visit(ItemsPack p) {
+        p.setQty(qtyIncrement);    
     }
     
 }

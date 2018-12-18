@@ -46,7 +46,6 @@ public class MyJFrame extends javax.swing.JFrame {
         store.getRegister().addObserver(observer);
         adminMode = false;
         jPanelCheckOut.setVisible(false);
-        //jButtonAddP.setVisible(false);
     }
 
     /**

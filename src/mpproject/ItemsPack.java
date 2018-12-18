@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
+import visitor.ItemVisitor;
 import visitor.MyVisitor;
 
 /**
@@ -53,8 +54,8 @@ public class ItemsPack implements Item{
     
 
     @Override
-    public void accept(MyVisitor v) {
-        getItems().forEach(e -> v.visit(e));
+    public void accept(ItemVisitor v) {
+        getItems().forEach(e -> e.accept(v));
     }   
 
     @Override

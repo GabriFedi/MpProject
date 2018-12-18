@@ -7,6 +7,7 @@ package mpproject;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import visitor.ItemVisitor;
 import visitor.MyVisitor;
 
 /**
@@ -61,7 +62,7 @@ public class Product implements Item, Cloneable{
     }
 
     @Override
-    public void accept(MyVisitor v) {
+    public void accept(ItemVisitor v) {
         v.visit(this);
     }
 
