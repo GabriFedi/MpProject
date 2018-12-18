@@ -347,8 +347,6 @@ public class MyJFrame extends javax.swing.JFrame {
         cartButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         cartButton.setIcon(new ImageIcon(new ImageIcon("imgs/addToCart.png").getImage().getScaledInstance(30,30,30)));
-        cartButton.addActionListener(e -> System.out.println());
-        
         
         if(cont%3!=0) 
             jPanel.add(Box.createRigidArea(new Dimension(235, 0)));
@@ -359,7 +357,7 @@ public class MyJFrame extends javax.swing.JFrame {
             user.getCart().addItem(p);
             CartPriceVisitor v = new CartPriceVisitor();
             user.getCart().accept(v);
-            this.updateTotal(v.getPrice());
+            updateTotal(v.getPrice());
         });
         
         jPanel.setBackground(Color.red);

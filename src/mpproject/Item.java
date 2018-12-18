@@ -6,7 +6,7 @@
 package mpproject;
 
 import java.awt.Image;
-import visitor.MyVisitor;
+import visitor.ItemVisitor;
 
 /**
  *
@@ -18,8 +18,6 @@ public interface Item {
     public Image getImage();
     public void add(Item... items);
     public void accept(ItemVisitor v);
-    public int getQty();
-    public void setQty(int i);
     public String getSerialNumber();
     public Item clone();
 }
