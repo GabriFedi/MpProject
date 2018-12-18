@@ -44,7 +44,12 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             JLabel img = createLabelIcon(e.getImage());
             JLabel name = createLabel(e.getName());
             newpanel.setLayout(new javax.swing.BoxLayout(newpanel,BoxLayout.X_AXIS));
-            
+            buttonIncrement.addActionListener(l ->{
+                e.accept(new QuantityIncrementVisitor(1));
+            });
+            buttonDecrement.addActionListener(l ->{
+                e.accept(new QuantityIncrementVisitor(-1));
+            });
             
             newpanel.add(img);
             newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
