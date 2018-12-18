@@ -93,4 +93,13 @@ public class ItemsPack implements Item{
             str += e.toString();
         return str;
     }
+
+    @Override
+    public Item clone() {
+        ItemsPack newItemPack = new ItemsPack(name);
+        getItems().forEach(e->{
+            newItemPack.add(e.clone());
+        });
+        return newItemPack;
+    }
 }
