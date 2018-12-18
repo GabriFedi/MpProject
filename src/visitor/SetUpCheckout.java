@@ -41,14 +41,19 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             JPanel newpanel = new JPanel();
             JButton buttonIncrement = new JButton("+");
             JButton buttonDecrement = new JButton("-");
+            JButton buttonRemove = new JButton("Rimuovi");
             JLabel img = createLabelIcon(e.getImage());
             JLabel name = createLabel(e.getName());
             newpanel.setLayout(new javax.swing.BoxLayout(newpanel,BoxLayout.X_AXIS));
+            
             buttonIncrement.addActionListener(l ->{
                 e.accept(new QuantityIncrementVisitor(1));
             });
             buttonDecrement.addActionListener(l ->{
                 e.accept(new QuantityIncrementVisitor(-1));
+            });
+            buttonRemove.addActionListener(l->{
+                obj.removeItem(e);
             });
             
             newpanel.add(img);
@@ -58,6 +63,8 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             newpanel.add(buttonIncrement);
             newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
             newpanel.add(buttonDecrement);
+            newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            newpanel.add(buttonRemove);
             newpanel.setBackground(Color.yellow);
             panel.add(newpanel);
             System.out.println(panel.getComponentCount());
