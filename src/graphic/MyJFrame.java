@@ -292,6 +292,7 @@ public class MyJFrame extends javax.swing.JFrame {
         this.jPanelCheckOut.setVisible(true);
         MyVisitor v = new SetUpCheckout(this.jPanelItemsCheckOut);
         user.getCart().accept(v);
+        System.out.println(user.getCart());
         revalidate();
     }//GEN-LAST:event_jButtonCheckOut1ActionPerformed
 

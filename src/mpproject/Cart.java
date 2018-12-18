@@ -24,7 +24,13 @@ public class Cart {
     }
     
     public void addItem(Item p){
-        products.add(p);
+        if(products.contains(p)){
+            Item tempP = products.get(products.indexOf(p));
+            tempP.setQty(p.getQty() + 1);
+        }
+        else{
+            products.add(p);
+        }
     }
     
     public void removeItem(Item p){
@@ -56,7 +62,11 @@ public class Cart {
     
     @Override
     public String toString(){
-        return "zizzopanizzo";//todo
+        String returnstr = "";
+        for(Item p : products)
+            returnstr += p;
+        
+        return returnstr;//todo
     }
     
 }
