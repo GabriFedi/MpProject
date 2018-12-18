@@ -5,6 +5,7 @@
  */
 package visitor;
 
+import graphic.MyJFrame;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -24,10 +25,11 @@ import mpproject.Cart;
 public class SetUpCheckout implements MyVisitor<Cart>{
 
     private javax.swing.JPanel panel;
-    
+    private MyJFrame frame;
 
-    public SetUpCheckout(JPanel panel) {
+    public SetUpCheckout(JPanel panel, MyJFrame frame) {
         this.panel = panel;
+        this.frame = frame;
     }
 
     public JPanel getPanel() {
@@ -36,7 +38,7 @@ public class SetUpCheckout implements MyVisitor<Cart>{
     
     @Override
     public void visit(Cart obj) {
-   
+        panel.removeAll();
         obj.getItems().forEach(e -> {
             JPanel newpanel = new JPanel();
             JButton buttonIncrement = new JButton("+");
@@ -44,21 +46,27 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             JButton buttonRemove = new JButton("Rimuovi");
             JLabel img = createLabelIcon(e.getImage());
             JLabel name = createLabel(e.getName());
+            JLabel qty = createLabel(Integer.toString(e.getQty()));
             newpanel.setLayout(new javax.swing.BoxLayout(newpanel,BoxLayout.X_AXIS));
             
             buttonIncrement.addActionListener(l ->{
                 e.accept(new QuantityIncrementVisitor(1));
+                obj.accept(this);
             });
             buttonDecrement.addActionListener(l ->{
                 e.accept(new QuantityIncrementVisitor(-1));
+                obj.accept(this);
             });
             buttonRemove.addActionListener(l->{
                 obj.removeItem(e);
+                obj.accept(this);
             });
             
             newpanel.add(img);
             newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
             newpanel.add(name);
+            newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            newpanel.add(qty);
             newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
             newpanel.add(buttonIncrement);
             newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
@@ -67,8 +75,9 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             newpanel.add(buttonRemove);
             newpanel.setBackground(Color.yellow);
             panel.add(newpanel);
-            System.out.println(panel.getComponentCount());
         });
+        frame.repaint();
+        frame.revalidate();
     }
     
     private JLabel createLabel(String labelText){

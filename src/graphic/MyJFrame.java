@@ -290,10 +290,9 @@ public class MyJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.jPanelList.setVisible(false);
         this.jPanelCheckOut.setVisible(true);
-        MyVisitor v = new SetUpCheckout(this.jPanelItemsCheckOut);
+        MyVisitor v = new SetUpCheckout(jPanelItemsCheckOut,this);
         user.getCart().accept(v);
         System.out.println(user.getCart());
-        revalidate();
     }//GEN-LAST:event_jButtonCheckOut1ActionPerformed
 
     private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
