@@ -6,9 +6,7 @@
 package mpproject;
 
 import java.awt.Image;
-import javax.swing.ImageIcon;
 import visitor.ItemVisitor;
-import visitor.MyVisitor;
 
 /**
  *
@@ -70,12 +68,10 @@ public class Product implements Item{
         return img;
     }
 
-    @Override
     public int getQty() {
         return this.qty;
     }
 
-    @Override
     public void setQty(int i) {
         this.qty = i;
     }
@@ -104,6 +100,7 @@ public class Product implements Item{
     public Item clone() {
         Product p = new Product(name, price, serialNumber);
         p.setImg(img);
+        p.setQty(qty);
         return p;
     }
     

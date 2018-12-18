@@ -8,7 +8,9 @@ package mpproject;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
+import visitor.GetQtyVisitor;
 import visitor.MyVisitor;
+import visitor.QuantityIncrementVisitor;
 
 /**
  *
@@ -26,7 +28,7 @@ public class Cart {
     public void addItem(Item p){
         if(products.contains(p)){
             Item tempP = products.get(products.indexOf(p));
-            tempP.setQty(p.getQty() + 1);
+            tempP.accept(new QuantityIncrementVisitor(1));
         }
         else{
             products.add(p.clone());

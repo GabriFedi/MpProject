@@ -46,7 +46,10 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             JButton buttonRemove = new JButton("Rimuovi");
             JLabel img = createLabelIcon(e.getImage());
             JLabel name = createLabel(e.getName());
-            JLabel qty = createLabel(Integer.toString(e.getQty()));
+            GetQtyVisitor visitor = new GetQtyVisitor();
+            e.accept(visitor);
+            int quantity = visitor.getQty();
+            JLabel qty = createLabel(Integer.toString(quantity));
             newpanel.setLayout(new javax.swing.BoxLayout(newpanel,BoxLayout.X_AXIS));
             
             buttonIncrement.addActionListener(l ->{

@@ -63,12 +63,12 @@ public class ItemsPack implements Item{
         return img;
     }
 
-    @Override
+    
     public int getQty() {
         return this.qty;
     }
 
-    @Override
+    
     public void setQty(int i) {
         this.qty = i;
     }

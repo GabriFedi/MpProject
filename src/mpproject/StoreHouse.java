@@ -7,6 +7,8 @@ package mpproject;
 
 import java.util.LinkedList;
 import observer.ObserverRegister;
+import visitor.GetQtyVisitor;
+import visitor.SetQtyVisitor;
 
 /**
  *
@@ -33,8 +35,14 @@ public class StoreHouse{
             register.notifyObservers(item, "xxx");
         }
         else{
+            // DAVVERO NECESSARIO non si può usare un QuantityIncrementVisitor ?
             Item temp = items.get(items.indexOf(item));
-            temp.setQty(temp.getQty() + item.getQty());
+            GetQtyVisitor visitorQty = new GetQtyVisitor();
+            temp.accept(visitorQty);
+            int tmpQty = visitorQty.getQty();
+            item.accept(visitorQty);
+            int itemQty = visitorQty.getQty();
+            temp.accept(new SetQtyVisitor(tmpQty + itemQty));
         }
     }
     
