@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import visitor.GetQtyVisitor;
 import visitor.MyVisitor;
 import visitor.QuantityIncrementVisitor;
+import visitor.SetQtyVisitor;
 
 /**
  *
@@ -31,7 +32,10 @@ public class Cart {
             tempP.accept(new QuantityIncrementVisitor(1));
         }
         else{
-            products.add(p.clone());
+            SetQtyVisitor v = new SetQtyVisitor(1);
+            Item pr = p.clone();
+            pr.accept(v);
+            products.add(pr);
         }
     }
     
