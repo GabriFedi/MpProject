@@ -25,7 +25,6 @@ public class Cart {
     public Cart() {
         products = new LinkedList<>();
         saleMethod = new DefaultSale();
-        saleMethod = new PercentSale(saleMethod,10);
     }
     
     public void addItem(Item p){
