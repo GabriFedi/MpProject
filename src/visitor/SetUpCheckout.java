@@ -66,16 +66,17 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             });
             
             newpanel.add(img);
-            newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            newpanel.add(Box.createRigidArea(new Dimension(60, 0)));
             newpanel.add(name);
-            newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            newpanel.add(Box.createRigidArea(new Dimension(60, 0)));
             newpanel.add(qty);
-            newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            newpanel.add(Box.createRigidArea(new Dimension(90, 0)));
             newpanel.add(buttonIncrement);
-            newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            newpanel.add(Box.createRigidArea(new Dimension(5, 0)));
             newpanel.add(buttonDecrement);
-            newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
+            newpanel.add(Box.createRigidArea(new Dimension(5, 0)));
             newpanel.add(buttonRemove);
+            newpanel.setAlignmentX(Component.LEFT_ALIGNMENT);
             panel.add(newpanel);
         });
         frame.repaint();
