@@ -8,7 +8,7 @@ package mpproject;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
-import visitor.GetQtyVisitor;
+import visitor.CartPriceVisitor;
 import visitor.MyVisitor;
 import visitor.QuantityIncrementVisitor;
 import visitor.SetQtyVisitor;
@@ -24,6 +24,8 @@ public class Cart {
 
     public Cart() {
         products = new LinkedList<>();
+        saleMethod = new DefaultSale();
+        saleMethod = new PercentSale(saleMethod,10);
     }
     
     public void addItem(Item p){
@@ -55,7 +57,11 @@ public class Cart {
         return products.stream();
     }
     
-    
+    public double discountedPrice(){
+        CartPriceVisitor v = new CartPriceVisitor();
+        accept(v);
+        return saleMethod.getDiscountedPrice(v.getPrice());
+    }
     
    // public boolean pay(){
        // double finalPrice = saleMethod.getDiscountedPrice(getPrice());
