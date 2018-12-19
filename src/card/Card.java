@@ -46,5 +46,11 @@ public abstract class Card{
     
     
     public abstract void pay(double amount) throws OutOfMoneyException;
+
+    public String getNumber() {
+        return number;
+    }
+    
+    
     
 }

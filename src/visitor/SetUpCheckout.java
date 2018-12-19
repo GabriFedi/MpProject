@@ -91,7 +91,7 @@ public class SetUpCheckout implements MyVisitor<Cart>{
     
     private JLabel createLabelIcon(Image icon){
         JLabel img = new JLabel();
-        img.setIcon(new ImageIcon(icon));
+        img.setIcon(new ImageIcon(icon.getScaledInstance(100, 100, 100)));
         img.setAlignmentX(Component.CENTER_ALIGNMENT);
         return img;
     }

@@ -39,6 +39,10 @@ public class Cart {
             products.add(pr);
         }
     }
+
+    public Sale getSaleMethod() {
+        return saleMethod;
+    }
     
     public void removeItem(Item p){
         products.remove(p);
@@ -59,6 +63,7 @@ public class Cart {
     public double discountedPrice(){
         CartPriceVisitor v = new CartPriceVisitor();
         accept(v);
+        System.out.println(saleMethod);
         return saleMethod.getDiscountedPrice(v.getPrice());
     }
     
