@@ -73,6 +73,7 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanelCheckOut = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanelItemsCheckOut = new javax.swing.JPanel();
+        jButtonBack = new javax.swing.JButton();
 
         adminLoginWindow.setTitle("Admin login");
         adminLoginWindow.setAlwaysOnTop(true);
@@ -201,18 +202,30 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanelItemsCheckOut.setLayout(new javax.swing.BoxLayout(jPanelItemsCheckOut, javax.swing.BoxLayout.PAGE_AXIS));
         jScrollPane2.setViewportView(jPanelItemsCheckOut);
 
+        jButtonBack.setText("Indietro");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCheckOutLayout = new javax.swing.GroupLayout(jPanelCheckOut);
         jPanelCheckOut.setLayout(jPanelCheckOutLayout);
         jPanelCheckOutLayout.setHorizontalGroup(
             jPanelCheckOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2)
+            .addGroup(jPanelCheckOutLayout.createSequentialGroup()
+                .addGap(0, 702, Short.MAX_VALUE)
+                .addComponent(jButtonBack))
         );
         jPanelCheckOutLayout.setVerticalGroup(
             jPanelCheckOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCheckOutLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBack)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelAllLayout = new javax.swing.GroupLayout(jPanelAll);
@@ -305,6 +318,14 @@ public class MyJFrame extends javax.swing.JFrame {
     private void jButtonConfirmLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmLoginActionPerformed
         updateAdminStatus();
     }//GEN-LAST:event_jButtonConfirmLoginActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        CartPriceVisitor v = new CartPriceVisitor();
+        user.getCart().accept(v);
+        updateTotal(v.getPrice());
+        jPanelList.setVisible(true);
+        jPanelCheckOut.setVisible(false);
+    }//GEN-LAST:event_jButtonBackActionPerformed
         
     public void drawNewProduct(Item p){
         jPanelProducts.add(getItemPanel(p));
@@ -360,7 +381,6 @@ public class MyJFrame extends javax.swing.JFrame {
             updateTotal(v.getPrice());
         });
         
-        jPanel.setBackground(Color.red);
         jPanel.add(img);
         jPanel.add(title);
         jPanel.add(price);
@@ -413,6 +433,7 @@ public class MyJFrame extends javax.swing.JFrame {
     private javax.swing.JDialog adminLoginWindow;
     private javax.swing.JButton jButtonAddP;
     private javax.swing.JButton jButtonAdmin;
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonCheckOut1;
     private javax.swing.JButton jButtonConfirmLogin;
     private javax.swing.JLabel jLabel1;

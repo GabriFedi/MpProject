@@ -76,7 +76,6 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             newpanel.add(buttonDecrement);
             newpanel.add(Box.createRigidArea(new Dimension(10, 0)));
             newpanel.add(buttonRemove);
-            newpanel.setBackground(Color.yellow);
             panel.add(newpanel);
         });
         frame.repaint();
