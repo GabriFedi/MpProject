@@ -1,6 +1,7 @@
 package graphic;
 
 
+import card.Card;
 import card.CreditCard;
 import card.DebitCard;
 import java.awt.Color;
@@ -170,6 +171,7 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jDialogNewProduct.setTitle("Aggiungi prodotto");
         jDialogNewProduct.setAlwaysOnTop(true);
         jDialogNewProduct.setModal(true);
         jDialogNewProduct.setResizable(false);
@@ -272,6 +274,7 @@ public class MyJFrame extends javax.swing.JFrame {
             .addComponent(jTabbedPane1)
         );
 
+        jDialogPay.setTitle("Pagamento");
         jDialogPay.setAlwaysOnTop(true);
         jDialogPay.setResizable(false);
         jDialogPay.setSize(new java.awt.Dimension(450, 200));
@@ -296,8 +299,9 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addComponent(jComboBoxCards, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(94, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogPayLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(21, 21, 21))
         );
         jDialogPayLayout.setVerticalGroup(
             jDialogPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,7 +403,7 @@ public class MyJFrame extends javax.swing.JFrame {
         jPanelCheckOut.setLayout(jPanelCheckOutLayout);
         jPanelCheckOutLayout.setHorizontalGroup(
             jPanelCheckOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
             .addGroup(jPanelCheckOutLayout.createSequentialGroup()
                 .addComponent(jButtonBack)
                 .addGap(131, 131, 131)
@@ -407,7 +411,7 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldPromoCode, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonPromoCode, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonPromoCode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonPay, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -427,7 +431,7 @@ public class MyJFrame extends javax.swing.JFrame {
                     .addGroup(jPanelCheckOutLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jButtonPay)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelAllLayout = new javax.swing.GroupLayout(jPanelAll);
@@ -445,7 +449,7 @@ public class MyJFrame extends javax.swing.JFrame {
         );
         jPanelAllLayout.setVerticalGroup(
             jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
@@ -532,35 +536,47 @@ public class MyJFrame extends javax.swing.JFrame {
         if(jTextFieldPromoCode.getText().equals("mela")){
             Sale tempSale = user.getCart().getSaleMethod();
             user.getCart().setSaleMethod(new PercentSale(tempSale, 20));
+            JOptionPane.showMessageDialog(this, "Sconto applicato con successo.", "Sconto", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Codice non valido.", "Errore", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonPromoCodeActionPerformed
 
     private void jButtonPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPayActionPerformed
         // TODO add your handling code here:
-        this.user.getCards().forEach(card -> this.jComboBoxCards.addItem(card.getNumber()));
-        this.jDialogPay.setVisible(true);
+        CartPriceVisitor v = new CartPriceVisitor();
+        user.getCart().accept(v);
+        if(v.getPrice() != 0){
+            this.user.getCards().forEach(card -> this.jComboBoxCards.addItem(card.getNumber()));
+            this.jDialogPay.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Il tuo carrello è vuoto.", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_jButtonPayActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String name = this.jTextFieldProductName.getText();
         String serial = this.jTextFieldProductSerial.getText();
-        double price = Double.parseDouble(this.jTextFieldProductPrice.getText());
-        int qty = Integer.parseInt(this.jTextFieldProductQuantity.getText());
-        
-        Product p = new Product(name,price, serial);
-        p.setImg((new ImageIcon("imgs/default.png").getImage()));
-        this.store.addItem(p);
-        
-        this.jDialogNewProduct.setVisible(false);
-        
-        
+        try{
+            double price = Double.parseDouble(this.jTextFieldProductPrice.getText());
+            int qty = Integer.parseInt(this.jTextFieldProductQuantity.getText());
+            Product p = new Product(name,price, serial);
+            p.setImg((new ImageIcon("imgs/default.png").getImage()));
+            this.store.addItem(p);
+            this.jDialogNewProduct.setVisible(false);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Inserisci dati corretti.", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String cardNumber = (String)jComboBoxCards.getSelectedItem();
         System.out.println(cardNumber);
+        Card c = user.getCards().filter(p-> p.getNumber().equals(cardNumber)).findFirst().get();
+        
         //fare visitor che si va a cercare la carta di credito e la ricaca e poi paghi con observer che 
         //se fa eccezione sputa sul dialog una merda di scritta con sta carta col cazzo che paghi
     }//GEN-LAST:event_jButton2ActionPerformed

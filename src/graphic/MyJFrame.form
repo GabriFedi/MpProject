@@ -95,6 +95,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialogNewProduct">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Aggiungi prodotto"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="modal" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
@@ -266,6 +267,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialogPay">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Pagamento"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -284,8 +286,9 @@
                   <EmptySpace pref="94" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -396,7 +399,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="602" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="608" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -497,7 +500,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" pref="767" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="732" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jButtonBack" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
@@ -505,7 +508,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextFieldPromoCode" min="-2" pref="144" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonPromoCode" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="jButtonPromoCode" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButtonPay" min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
@@ -531,7 +534,7 @@
                               <Component id="jButtonPay" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
