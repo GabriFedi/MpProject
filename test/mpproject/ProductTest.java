@@ -24,7 +24,6 @@ public class ProductTest {
     
     @Before
     public void setUp() {
-        
         Product p = new Product("cacio", 25.6,"333");
         assertEquals("cacio", p.getName());
     }
@@ -59,4 +58,24 @@ public class ProductTest {
        assertEquals("description",p.getDescr());
     }
     
+    @Test
+    public void testEquals(){
+        Product p = new Product("Test", 100, "SerialTest");
+        Product p1 = new Product("Test1", 200, "SerialTest");
+        assertTrue(p.equals(p1)); 
+    }
+    
+    @Test
+    public void testToString(){
+        Product p = new Product("Test", 100, "SerialTest");
+        String expResult = "Name: Test\nPrice: 100.0\n";
+        assertTrue(p.toString().equals(expResult));
+    }
+    
+    @Test
+    public void testClone(){
+        Product p = new Product("Test", 100, "SerialTest");
+        Item p1 = p.clone();
+        assertTrue(p.equals(p1));
+    }
 }
