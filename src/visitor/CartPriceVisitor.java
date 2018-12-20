@@ -13,7 +13,7 @@ import mpproject.Item;
  * @author work
  */
 public class CartPriceVisitor implements MyVisitor<Cart>{
-    double price;
+    private double price;
 
     public CartPriceVisitor() {
         price = 0;

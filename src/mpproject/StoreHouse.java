@@ -24,7 +24,6 @@ public class StoreHouse{
         register = new ObserverRegister();
     }
     
-    
     public ObserverRegister<Item> getRegister() {
         return register;
     }
@@ -35,14 +34,9 @@ public class StoreHouse{
             register.notifyObservers(item, "xxx");
         }
         else{
-            // DAVVERO NECESSARIO non si può usare un QuantityIncrementVisitor ?
             Item temp = items.get(items.indexOf(item));
-            GetQtyVisitor visitorQty = new GetQtyVisitor();
-            temp.accept(visitorQty);
-            int tmpQty = visitorQty.getQty();
-            item.accept(visitorQty);
-            int itemQty = visitorQty.getQty();
-            temp.accept(new SetQtyVisitor(tmpQty + itemQty));
+            visitor.QuantityIncrementVisitor v = new visitor.QuantityIncrementVisitor(1);
+            temp.accept(v);
         }
     }
     

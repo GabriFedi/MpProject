@@ -27,6 +27,7 @@ public class ItemsPack implements Item{
         this.name = name;
         this.serialNumber = serial;
         items  = new LinkedList<>();
+        this.qty = 1;
     }
 
     public Stream<Item> getItems() {

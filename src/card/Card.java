@@ -43,8 +43,6 @@ public abstract class Card{
         this.balance += amount;
     }
     
-    
-    
     public abstract void pay(double amount) throws OutOfMoneyException;
 
     public String getNumber() {

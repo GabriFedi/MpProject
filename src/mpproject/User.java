@@ -25,6 +25,7 @@ public class User {
         this.address = address;
         cart = new Cart();
         cards = new LinkedList<>();
+        cashBalance = 5000;
     }
 
     public String getAddress() {
@@ -54,10 +55,4 @@ public class User {
     public Stream<Card> getCards() {
         return cards.stream();
     }
-    
-    
-    
-    
-    
-    
 }

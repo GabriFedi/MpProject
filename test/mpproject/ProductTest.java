@@ -5,10 +5,7 @@
  */
 package mpproject;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -77,5 +74,30 @@ public class ProductTest {
         Product p = new Product("Test", 100, "SerialTest");
         Item p1 = p.clone();
         assertTrue(p.equals(p1));
+    }
+    
+    @Test
+    public void testGetName(){
+        Product p = new Product("Test", 100, "SerialTest");
+        assertEquals("Test", p.getName());
+    }
+    
+    @Test
+    public void testGetQty(){
+        Product p = new Product("Test", 100, "SerialTest");
+        assertEquals(1, p.getQty());
+    }
+    
+    @Test
+    public void testSetQty(){
+        Product p = new Product("Test", 100, "SerialTest");
+        p.setQty(100);
+        assertEquals(100, p.getQty());
+    }
+    
+    @Test
+    public void testGetSerialNumber(){
+        Product p = new Product("Test", 100, "SerialTest");
+        assertEquals("SerialTest", p.getSerialNumber());
     }
 }

@@ -31,7 +31,6 @@ public class Product implements Item{
         this.img = img;
     }
     
-
     @Override
     public double getPrice() {
         return price * qty;
@@ -55,7 +54,7 @@ public class Product implements Item{
 
     @Override
     public void add(Item... items) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Operation not supported on Product."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

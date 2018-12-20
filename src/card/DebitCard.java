@@ -26,6 +26,15 @@ public class DebitCard extends Card{
         this.removeFromBalance(amount);
     }
     
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof DebitCard){
+            DebitCard temp = (DebitCard)o;
+            return temp.getNumber().equals(getNumber());
+        }
+        return false;
+    }
+    
     
     
     
