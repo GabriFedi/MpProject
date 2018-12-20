@@ -508,7 +508,7 @@ public class MyJFrame extends javax.swing.JFrame {
         MyVisitor v = new SetUpCheckout(jPanelItemsCheckOut,this);
         user.getCart().accept(v);
         System.out.println(user.getCart());
-        System.out.println(user.getCart().discountedPrice());
+        //System.out.println(user.getCart().discountedPrice());
     }//GEN-LAST:event_jButtonCheckOut1ActionPerformed
 
     private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed

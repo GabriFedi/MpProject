@@ -60,18 +60,6 @@ public class Cart {
         return products.stream();
     }
     
-    public double discountedPrice(){
-        CartPriceVisitor v = new CartPriceVisitor();
-        accept(v);
-        System.out.println(saleMethod);
-        return saleMethod.getDiscountedPrice(v.getPrice());
-    }
-    
-   // public boolean pay(){
-       // double finalPrice = saleMethod.getDiscountedPrice(getPrice());
-       // return paymentMethod.pay(finalPrice);
-  //  }
-    
     public void accept(MyVisitor v){
         v.visit(this);
     }

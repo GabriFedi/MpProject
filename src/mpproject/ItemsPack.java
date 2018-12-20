@@ -23,8 +23,9 @@ public class ItemsPack implements Item{
     private Image img;
     private int qty;
 
-    public ItemsPack(String name) {
+    public ItemsPack(String name, String serial) {
         this.name = name;
+        this.serialNumber = serial;
         items  = new LinkedList<>();
     }
 
@@ -80,7 +81,7 @@ public class ItemsPack implements Item{
     
      @Override 
     public boolean equals(Object o){
-        if(! (o instanceof ItemsPack)){
+        if(o instanceof ItemsPack){
             ItemsPack temp = (ItemsPack) o;
             return temp.getSerialNumber().equals(this.serialNumber);
         }
@@ -97,7 +98,7 @@ public class ItemsPack implements Item{
 
     @Override
     public Item clone() {
-        ItemsPack newItemPack = new ItemsPack(name);
+        ItemsPack newItemPack = new ItemsPack(name, serialNumber);
         getItems().forEach(e->{
             newItemPack.add(e.clone());
         });
