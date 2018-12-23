@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -18,7 +20,12 @@ import mpproject.Product;
 import mpproject.Sale;
 import mpproject.StoreHouse;
 import mpproject.User;
+import myexceptions.OutOfMoneyException;
 import observer.DrawProductObserver;
+import observer.ObserverRegister;
+import observer.UpdateButtonTotalText;
+import observer.UpdateOnPay;
+import observer.UpdateTotalText;
 import visitor.CartPriceVisitor;
 import visitor.MyVisitor;
 import visitor.SetUpCheckout;
@@ -41,20 +48,31 @@ public class MyJFrame extends javax.swing.JFrame {
     private User user;
     private StoreHouse store;
     private boolean adminMode;
+    private ObserverRegister<MyJFrame> observers;
     
     GridLayout experimentLayout;
     public MyJFrame() {
         initComponents();
-        this.jButtonCheckOut1.setIcon(new ImageIcon(new ImageIcon("imgs/checkOut.png").getImage().getScaledInstance(30,30,30)));
+        observers = new ObserverRegister<>();
+        observers.addObserver(new UpdateButtonTotalText(this.jButtonCheckOut1, "total"));
+        observers.addObserver(new UpdateTotalText(this.jLabelTotal2, "total"));
+        observers.addObserver(new UpdateTotalText(this.jLabelBalance, "balance"));
+        observers.addObserver(new UpdateOnPay(this.jPanelItemsCheckOut,"paid"));
+        
+        this.jButtonCheckOut1.setIcon(new ImageIcon(new ImageIcon("imgs/checkOut.png").getImage().getScaledInstance(30,30,30)));   
+        
+        
         user = new User("Via porcospino 12");
         user.addCard(new DebitCard("1234512345123451", "Melo", "Grano", "12/07", "123"));
         user.addCard(new CreditCard("1232512345323455", "Melo", "Grano", "12/07", "345"));
-        
         store = new StoreHouse();
         DrawProductObserver observer = new DrawProductObserver("xxx", this);
         store.getRegister().addObserver(observer);
         adminMode = false;
         jPanelCheckOut.setVisible(false);
+        Product p = new Product("item",12.5,"xxx");
+        p.setImg((new ImageIcon("imgs/default.png").getImage()));
+        this.store.addItem(p);
     }
 
     /**
@@ -89,6 +107,7 @@ public class MyJFrame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jComboBoxCards = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+        jLabelBalance = new javax.swing.JLabel();
         jPanelAll = new javax.swing.JPanel();
         jPanelList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -104,6 +123,7 @@ public class MyJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButtonPromoCode = new javax.swing.JButton();
         jButtonPay = new javax.swing.JButton();
+        jLabelTotal2 = new javax.swing.JLabel();
 
         adminLoginWindow.setTitle("Admin login");
         adminLoginWindow.setAlwaysOnTop(true);
@@ -276,10 +296,17 @@ public class MyJFrame extends javax.swing.JFrame {
 
         jDialogPay.setTitle("Pagamento");
         jDialogPay.setAlwaysOnTop(true);
+        jDialogPay.setPreferredSize(new java.awt.Dimension(560, 171));
         jDialogPay.setResizable(false);
         jDialogPay.setSize(new java.awt.Dimension(450, 200));
 
         jLabel8.setText("Seleziona carta: ");
+
+        jComboBoxCards.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCardsItemStateChanged(evt);
+            }
+        });
 
         jButton2.setText("Pay");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +314,8 @@ public class MyJFrame extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabelBalance.setText("Balance: 0.00€");
 
         javax.swing.GroupLayout jDialogPayLayout = new javax.swing.GroupLayout(jDialogPay.getContentPane());
         jDialogPay.getContentPane().setLayout(jDialogPayLayout);
@@ -297,7 +326,9 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxCards, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jLabelBalance)
+                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogPayLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -309,7 +340,8 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addGroup(jDialogPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBoxCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelBalance))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -399,6 +431,8 @@ public class MyJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelTotal2.setText("Total: 0.00€");
+
         javax.swing.GroupLayout jPanelCheckOutLayout = new javax.swing.GroupLayout(jPanelCheckOut);
         jPanelCheckOut.setLayout(jPanelCheckOutLayout);
         jPanelCheckOutLayout.setHorizontalGroup(
@@ -414,11 +448,17 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addComponent(jButtonPromoCode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonPay, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCheckOutLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelTotal2)
+                .addGap(36, 36, 36))
         );
         jPanelCheckOutLayout.setVerticalGroup(
             jPanelCheckOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCheckOutLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(39, 39, 39)
+                .addComponent(jLabelTotal2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelCheckOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCheckOutLayout.createSequentialGroup()
@@ -431,7 +471,7 @@ public class MyJFrame extends javax.swing.JFrame {
                     .addGroup(jPanelCheckOutLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jButtonPay)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelAllLayout = new javax.swing.GroupLayout(jPanelAll);
@@ -457,7 +497,7 @@ public class MyJFrame extends javax.swing.JFrame {
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllLayout.createSequentialGroup()
-                    .addComponent(jPanelCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                    .addComponent(jPanelCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -524,9 +564,8 @@ public class MyJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfirmLoginActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        CartPriceVisitor v = new CartPriceVisitor();
-        user.getCart().accept(v);
-        updateTotal(v.getPrice());
+
+        this.observers.notifyObservers(this, "total");
         jPanelList.setVisible(true);
         jPanelCheckOut.setVisible(false);
     }//GEN-LAST:event_jButtonBackActionPerformed
@@ -536,6 +575,7 @@ public class MyJFrame extends javax.swing.JFrame {
         if(jTextFieldPromoCode.getText().equals("mela")){
             Sale tempSale = user.getCart().getSaleMethod();
             user.getCart().setSaleMethod(new PercentSale(tempSale, 20));
+            this.observers.notifyObservers(this, "total");
             JOptionPane.showMessageDialog(this, "Sconto applicato con successo.", "Sconto", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(this, "Codice non valido.", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -546,6 +586,7 @@ public class MyJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         CartPriceVisitor v = new CartPriceVisitor();
         user.getCart().accept(v);
+        this.jComboBoxCards.removeAllItems();
         if(v.getPrice() != 0){
             this.user.getCards().forEach(card -> this.jComboBoxCards.addItem(card.getNumber()));
             this.jDialogPay.setVisible(true);
@@ -574,12 +615,26 @@ public class MyJFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String cardNumber = (String)jComboBoxCards.getSelectedItem();
-        System.out.println(cardNumber);
         Card c = user.getCards().filter(p-> p.getNumber().equals(cardNumber)).findFirst().get();
-        
-        //fare visitor che si va a cercare la carta di credito e la ricaca e poi paghi con observer che 
-        //se fa eccezione sputa sul dialog una merda di scritta con sta carta col cazzo che paghi
+        CartPriceVisitor v = new CartPriceVisitor();
+        user.getCart().accept(v);
+        try {
+            c.pay(v.getPrice());
+            JOptionPane.showMessageDialog(this, "Acquisto completato", "OK", JOptionPane.INFORMATION_MESSAGE);
+            this.jDialogPay.setVisible(false);
+            observers.notifyObservers(this, "paid");
+        } catch (OutOfMoneyException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Impossibile completare l'acquisto", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(MyJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBoxCardsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCardsItemStateChanged
+        //System.out.println("card "+ this.jComboBoxCards.getSelectedItem());
+        String cardNumber = (String)jComboBoxCards.getSelectedItem();
+        Card c = user.getCards().filter(p-> p.getNumber().equals(cardNumber)).findFirst().get();
+        this.jLabelBalance.setText("Balance: "+c.getBalance() + "€ß");
+    }//GEN-LAST:event_jComboBoxCardsItemStateChanged
         
     public void drawNewProduct(Item p){
         jPanelProducts.add(getItemPanel(p));
@@ -630,9 +685,7 @@ public class MyJFrame extends javax.swing.JFrame {
            
         cartButton.addActionListener(e -> {
             user.getCart().addItem(p);
-            CartPriceVisitor v = new CartPriceVisitor();
-            user.getCart().accept(v);
-            updateTotal(v.getPrice());
+            this.observers.notifyObservers(this, "total");
         });
         
         jPanel.add(img);
@@ -644,9 +697,28 @@ public class MyJFrame extends javax.swing.JFrame {
         
     }
     
-    public void  updateTotal(double total){
-            this.jButtonCheckOut1.setText("Total: " +total + " €");
-        }
+    public javax.swing.JLabel getTotalLabel2(){
+       return this.getTotalLabel2();
+    }
+    
+    public javax.swing.JLabel getBalanceLabel(){
+       return this.jLabelBalance;
+    }
+    
+    public javax.swing.JButton getTotalButton1(){
+       return this.jButtonCheckOut1;
+    }
+    
+    public ObserverRegister<MyJFrame> getObserverRegister(){
+       return this.observers;
+    }
+    
+    
+    public User getUser(){
+       return this.user;
+    }
+    
+   
     
     /**
      * @param args the command line arguments
@@ -705,6 +777,8 @@ public class MyJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelBalance;
+    private javax.swing.JLabel jLabelTotal2;
     private javax.swing.JPanel jPanelAll;
     private javax.swing.JPanel jPanelCheckOut;
     private javax.swing.JPanel jPanelItemsCheckOut;

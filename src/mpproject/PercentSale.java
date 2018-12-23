@@ -20,8 +20,8 @@ public class PercentSale extends AbstractDecSale{
     @Override
     public double getDiscountedPrice(double price) {
         double pr = super.getDiscountedPrice(price);
-        double saleAmount = pr/100.*percentSale;
-        return pr-percentSale;
+        double saleAmount = (pr/100)*percentSale;
+        return pr-saleAmount;
     }
     
 }

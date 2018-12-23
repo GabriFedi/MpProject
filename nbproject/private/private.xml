@@ -5,16 +5,23 @@
         <group>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/DrawProductObserver.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Item.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/ItemPriceVisitor.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/ItemVisitor.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/DefaultSale.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/graphic/MyJFrame.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/SetUpCheckout.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Cart.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Sale.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/UpdateOnPay.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/ItemsPack.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/UpdateTotalText.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Product.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/MyObserver.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/ItemVisitor.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/SetUpCheckout.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/UpdateButtonTotalText.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Payment.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/User.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/ItemsPack.java</file>
-            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/Product.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/UpdateBalanceText.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/observer/ObserverRegister.java</file>
+            <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/PercentSale.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/mpproject/StoreHouse.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/CartPriceVisitor.java</file>
             <file>file:/Users/work/NetBeansProjects/MpProject/src/visitor/GetQtyVisitor.java</file>

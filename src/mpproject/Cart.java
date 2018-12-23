@@ -64,6 +64,10 @@ public class Cart {
         v.visit(this);
     }
     
+    public void empty(){
+        this.products = new LinkedList<>();
+    }
+    
     @Override
     public String toString(){
         String returnstr = "";

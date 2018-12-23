@@ -77,6 +77,8 @@ public class SetUpCheckout implements MyVisitor<Cart>{
             newpanel.add(Box.createRigidArea(new Dimension(5, 0)));
             newpanel.add(buttonRemove);
             newpanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            
+            frame.getObserverRegister().notifyObservers(frame, "total");
             panel.add(newpanel);
         });
         frame.repaint();
