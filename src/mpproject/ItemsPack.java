@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
+import visitor.ItemVisitor;
 import visitor.MyVisitor;
 
 /**
@@ -22,9 +23,11 @@ public class ItemsPack implements Item{
     private Image img;
     private int qty;
 
-    public ItemsPack(String name) {
+    public ItemsPack(String name, String serial) {
         this.name = name;
+        this.serialNumber = serial;
         items  = new LinkedList<>();
+        this.qty = 1;
     }
 
     public Stream<Item> getItems() {
@@ -53,8 +56,8 @@ public class ItemsPack implements Item{
     
 
     @Override
-    public void accept(MyVisitor v) {
-        getItems().forEach(e -> v.visit(e));
+    public void accept(ItemVisitor v) {
+        getItems().forEach(e -> e.accept(v));
     }   
 
     @Override
@@ -62,12 +65,12 @@ public class ItemsPack implements Item{
         return img;
     }
 
-    @Override
+    
     public int getQty() {
         return this.qty;
     }
 
-    @Override
+    
     public void setQty(int i) {
         this.qty = i;
     }
@@ -79,7 +82,7 @@ public class ItemsPack implements Item{
     
      @Override 
     public boolean equals(Object o){
-        if(! (o instanceof ItemsPack)){
+        if(o instanceof ItemsPack){
             ItemsPack temp = (ItemsPack) o;
             return temp.getSerialNumber().equals(this.serialNumber);
         }
@@ -92,5 +95,14 @@ public class ItemsPack implements Item{
         for(Item e : items)
             str += e.toString();
         return str;
+    }
+
+    @Override
+    public Item clone() {
+        ItemsPack newItemPack = new ItemsPack(name, serialNumber);
+        getItems().forEach(e->{
+            newItemPack.add(e.clone());
+        });
+        return newItemPack;
     }
 }

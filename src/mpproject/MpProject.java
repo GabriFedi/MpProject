@@ -14,7 +14,7 @@ import graphic.MyJFrame;
 public class MpProject {
     
     public static void main(String[] args){
-        System.out.println("zizzopanizzo");
+        System.out.println("valdo bechini");
         new MyJFrame().setVisible(true);
     }
 }

@@ -5,8 +5,6 @@
  */
 package observer;
 
-import observer.MyObserver;
-import observer.MyObservable;
 import java.util.LinkedList;
 
 
@@ -21,7 +19,6 @@ public class ObserverRegister <T> implements MyObservable<T>{
     public ObserverRegister() {
         this.observers = new LinkedList<>();
     }
-    
     
     @Override
     public void addObserver(MyObserver<T> o) {

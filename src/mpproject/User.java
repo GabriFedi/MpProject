@@ -6,6 +6,9 @@
 package mpproject;
 
 import card.Card;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  *
@@ -15,12 +18,12 @@ public class User {
     
     private String address;
     private Cart cart;
-    private double cashBalance;
-    private Card card;
+    private List<Card> cards;
 
     public User(String address) {
         this.address = address;
         cart = new Cart();
+        cards = new LinkedList<>();
     }
 
     public String getAddress() {
@@ -35,23 +38,11 @@ public class User {
         return cart;
     }
 
-    public double getCashBalance() {
-        return cashBalance;
+    public void addCard(Card card){
+        cards.add(card);
     }
 
-    public void setCashBalance(double cashBalance) {
-        this.cashBalance = cashBalance;
+    public Stream<Card> getCards() {
+        return cards.stream();
     }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-    
-    
-    
-    
 }

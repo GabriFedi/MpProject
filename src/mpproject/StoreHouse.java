@@ -7,6 +7,8 @@ package mpproject;
 
 import java.util.LinkedList;
 import observer.ObserverRegister;
+import visitor.GetQtyVisitor;
+import visitor.SetQtyVisitor;
 
 /**
  *
@@ -22,7 +24,6 @@ public class StoreHouse{
         register = new ObserverRegister();
     }
     
-    
     public ObserverRegister<Item> getRegister() {
         return register;
     }
@@ -34,7 +35,8 @@ public class StoreHouse{
         }
         else{
             Item temp = items.get(items.indexOf(item));
-            temp.setQty(temp.getQty() + item.getQty());
+            visitor.QuantityIncrementVisitor v = new visitor.QuantityIncrementVisitor(1);
+            temp.accept(v);
         }
     }
     

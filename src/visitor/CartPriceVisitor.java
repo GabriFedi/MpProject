@@ -13,7 +13,7 @@ import mpproject.Item;
  * @author work
  */
 public class CartPriceVisitor implements MyVisitor<Cart>{
-    double price;
+    private double price;
 
     public CartPriceVisitor() {
         price = 0;
@@ -25,7 +25,9 @@ public class CartPriceVisitor implements MyVisitor<Cart>{
     
     @Override
     public void visit(Cart obj) {
-        price = obj.getProducts().mapToDouble(Item::getPrice).sum();
+        price = obj.getItems().mapToDouble(Item::getPrice).sum();
+        System.out.println("price: "+ price);
+        price = obj.getSaleMethod().getDiscountedPrice(price);
     }
 
    

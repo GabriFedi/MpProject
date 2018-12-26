@@ -6,7 +6,7 @@
 package mpproject;
 
 import java.awt.Image;
-import visitor.MyVisitor;
+import visitor.ItemVisitor;
 
 /**
  *
@@ -24,17 +24,16 @@ public class Product implements Item{
         this.name = name;
         this.price = price;
         this.serialNumber = serialNumber;
+        this.qty = 1;
     }
-    
   
-      public void setImg(Image img) {
+    public void setImg(Image img) {
         this.img = img;
     }
     
-
     @Override
     public double getPrice() {
-        return price;
+        return price * qty;
     }
 
     public void setPrice(double price) {
@@ -55,11 +54,11 @@ public class Product implements Item{
 
     @Override
     public void add(Item... items) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Operation not supported on Product."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void accept(MyVisitor v) {
+    public void accept(ItemVisitor v) {
         v.visit(this);
     }
 
@@ -68,27 +67,23 @@ public class Product implements Item{
         return img;
     }
 
-    @Override
     public int getQty() {
         return this.qty;
     }
 
-    @Override
     public void setQty(int i) {
         this.qty = i;
     }
     
     @Override 
     public boolean equals(Object o){
-        if(! (o instanceof Product)){
+        if(o instanceof Product){
             Product temp = (Product) o;
             return temp.getSerialNumber().equals(this.serialNumber);
         }
         return false;
     }
-        
     
-
     @Override
     public String getSerialNumber() {
         return this.serialNumber;
@@ -99,7 +94,13 @@ public class Product implements Item{
         return ("Name: "+ this.getName() + "\n" + 
                 "Price: " + this.getPrice()+ "\n");
     }
-    
-    
+
+    @Override
+    public Item clone() {
+        Product p = new Product(name, price, serialNumber);
+        p.setImg(img);
+        p.setQty(qty);
+        return p;
+    }
     
 }

@@ -5,10 +5,15 @@
  */
 package mpproject;
 
+import sale.DefaultSale;
+import sale.Sale;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
+import visitor.CartPriceVisitor;
 import visitor.MyVisitor;
+import visitor.QuantityIncrementVisitor;
+import visitor.SetQtyVisitor;
 
 /**
  *
@@ -16,47 +21,57 @@ import visitor.MyVisitor;
  */
 public class Cart {
     private List<Item> products;
-    private Payment paymentMethod;
     private Sale saleMethod;
 
     public Cart() {
         products = new LinkedList<>();
+        saleMethod = new DefaultSale();
     }
     
     public void addItem(Item p){
-        products.add(p);
+        if(products.contains(p)){
+            Item tempP = products.get(products.indexOf(p));
+            tempP.accept(new QuantityIncrementVisitor(1));
+        }
+        else{
+            SetQtyVisitor v = new SetQtyVisitor(1);
+            Item pr = p.clone();
+            pr.accept(v);
+            products.add(pr);
+        }
+    }
+
+    public Sale getSaleMethod() {
+        return saleMethod;
     }
     
     public void removeItem(Item p){
         products.remove(p);
     }
 
-    public void setPaymentMethod(Payment paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
     public void setSaleMethod(Sale saleMethod) {
         this.saleMethod = saleMethod;
     }
 
-    public Stream<Item> getProducts() {
+    public Stream<Item> getItems() {
         return products.stream();
     }
-    
-    
-    
-   // public boolean pay(){
-       // double finalPrice = saleMethod.getDiscountedPrice(getPrice());
-       // return paymentMethod.pay(finalPrice);
-  //  }
     
     public void accept(MyVisitor v){
         v.visit(this);
     }
     
+    public void empty(){
+        this.products = new LinkedList<>();
+    }
+    
     @Override
     public String toString(){
-        return "zizzopanizzo";//todo
+        String returnstr = "";
+        for(Item p : products)
+            returnstr += p;
+        
+        return returnstr;//todo
     }
     
 }

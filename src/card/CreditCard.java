@@ -25,4 +25,12 @@ public class CreditCard extends Card{
         removeFromBalance(amount);
     }
     
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof CreditCard){
+            CreditCard temp = (CreditCard)o;
+            return temp.getNumber().equals(getNumber());
+        }
+        return false;
+    }
 }

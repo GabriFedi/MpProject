@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mpproject;
+package visitor;
+
+import mpproject.ItemsPack;
+import mpproject.Product;
 
 /**
  *
  * @author work
  */
-public interface Payment {
-    public boolean pay(double amount);
+public interface ItemVisitor {
+    public void visit(Product p);
+    public void visit(ItemsPack p);
 }
