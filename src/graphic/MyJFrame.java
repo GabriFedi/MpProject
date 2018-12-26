@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Box;
@@ -102,6 +105,8 @@ public class MyJFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextFieldProductSerial = new javax.swing.JTextField();
+        jTextFieldProductPath = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         newPack = new javax.swing.JPanel();
         jDialogPay = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
@@ -212,6 +217,8 @@ public class MyJFrame extends javax.swing.JFrame {
 
         jLabel7.setText("Serial:");
 
+        jLabel9.setText("Path Immagine:");
+
         javax.swing.GroupLayout newProductLayout = new javax.swing.GroupLayout(newProduct);
         newProduct.setLayout(newProductLayout);
         newProductLayout.setHorizontalGroup(
@@ -222,20 +229,24 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
             .addGroup(newProductLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(newProductLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldProductPath, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, newProductLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addComponent(jTextFieldProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(newProductLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, newProductLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(newProductLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, newProductLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(newProductLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, newProductLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldProductSerial, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -260,7 +271,11 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addGroup(newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldProductPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -296,9 +311,8 @@ public class MyJFrame extends javax.swing.JFrame {
 
         jDialogPay.setTitle("Pagamento");
         jDialogPay.setAlwaysOnTop(true);
-        jDialogPay.setPreferredSize(new java.awt.Dimension(560, 171));
         jDialogPay.setResizable(false);
-        jDialogPay.setSize(new java.awt.Dimension(450, 200));
+        jDialogPay.setSize(new java.awt.Dimension(490, 200));
 
         jLabel8.setText("Seleziona carta: ");
 
@@ -604,12 +618,26 @@ public class MyJFrame extends javax.swing.JFrame {
             double price = Double.parseDouble(this.jTextFieldProductPrice.getText());
             int qty = Integer.parseInt(this.jTextFieldProductQuantity.getText());
             Product p = new Product(name,price, serial);
-            p.setImg((new ImageIcon("imgs/default.png").getImage()));
+            String imgPath = jTextFieldProductPath.getText();
+            if(imgPath.equals(""))
+                p.setImg((new ImageIcon("imgs/default.png").getImage()));
+            else{
+                File tmpDir = new File(imgPath);
+                if(!tmpDir.exists()){
+                    p.setImg((new ImageIcon("imgs/default.png").getImage()));
+                }
+                else{
+                    p.setImg((new ImageIcon(imgPath).getImage()));
+                }
+            }
+                
             this.store.addItem(p);
             this.jDialogNewProduct.setVisible(false);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Inserisci dati corretti.", "Errore", JOptionPane.ERROR_MESSAGE);
         }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -632,8 +660,10 @@ public class MyJFrame extends javax.swing.JFrame {
     private void jComboBoxCardsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCardsItemStateChanged
         //System.out.println("card "+ this.jComboBoxCards.getSelectedItem());
         String cardNumber = (String)jComboBoxCards.getSelectedItem();
-        Card c = user.getCards().filter(p-> p.getNumber().equals(cardNumber)).findFirst().get();
-        this.jLabelBalance.setText("Balance: "+c.getBalance() + "€ß");
+        if(cardNumber != null){
+            Card c = user.getCards().filter(p-> p.getNumber().equals(cardNumber)).findFirst().get();
+            this.jLabelBalance.setText("Balance: "+c.getBalance() + "€");
+        }
     }//GEN-LAST:event_jComboBoxCardsItemStateChanged
         
     public void drawNewProduct(Item p){
@@ -777,6 +807,7 @@ public class MyJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelBalance;
     private javax.swing.JLabel jLabelTotal2;
     private javax.swing.JPanel jPanelAll;
@@ -790,6 +821,7 @@ public class MyJFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldProductName;
+    private javax.swing.JTextField jTextFieldProductPath;
     private javax.swing.JTextField jTextFieldProductPrice;
     private javax.swing.JTextField jTextFieldProductQuantity;
     private javax.swing.JTextField jTextFieldProductSerial;

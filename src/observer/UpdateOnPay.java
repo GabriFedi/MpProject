@@ -33,6 +33,7 @@ public class UpdateOnPay implements MyObserver<MyJFrame>{
                event.getUser().getCart().empty();
                MyVisitor v = new SetUpCheckout(this.panel,event);
                event.getUser().getCart().accept(v);
+               event.getObserverRegister().notifyObservers(event, "total");
            }
        }
     }
