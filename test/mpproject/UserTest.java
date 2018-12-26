@@ -59,29 +59,8 @@ public class UserTest {
         assertNotNull(result);
     }
 
-    /**
-     * Test of getCashBalance method, of class User.
-     */
-    @Test
-    public void testGetCashBalance() {
-        System.out.println("getCashBalance");
-        User instance = new User("Test address");
-        double expResult = 5000.0;
-        double result = instance.getCashBalance();
-        assertEquals(expResult, result, 0.0);
-    }
 
-    /**
-     * Test of setCashBalance method, of class User.
-     */
-    @Test
-    public void testSetCashBalance() {
-        System.out.println("setCashBalance");
-        double cashBalance = 100.0;
-        User instance = new User("Test address");
-        instance.setCashBalance(cashBalance);
-        assertEquals(cashBalance, instance.getCashBalance(), 0.01);
-    }
+   
 
     /**
      * Test of addCard method, of class User.

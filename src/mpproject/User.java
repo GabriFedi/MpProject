@@ -18,14 +18,12 @@ public class User {
     
     private String address;
     private Cart cart;
-    private double cashBalance;
     private List<Card> cards;
 
     public User(String address) {
         this.address = address;
         cart = new Cart();
         cards = new LinkedList<>();
-        cashBalance = 5000;
     }
 
     public String getAddress() {
@@ -38,14 +36,6 @@ public class User {
 
     public Cart getCart() {
         return cart;
-    }
-
-    public double getCashBalance() {
-        return cashBalance;
-    }
-
-    public void setCashBalance(double cashBalance) {
-        this.cashBalance = cashBalance;
     }
 
     public void addCard(Card card){

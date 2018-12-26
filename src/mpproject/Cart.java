@@ -5,6 +5,8 @@
  */
 package mpproject;
 
+import sale.DefaultSale;
+import sale.Sale;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,7 +21,6 @@ import visitor.SetQtyVisitor;
  */
 public class Cart {
     private List<Item> products;
-    private Payment paymentMethod;
     private Sale saleMethod;
 
     public Cart() {
@@ -46,10 +47,6 @@ public class Cart {
     
     public void removeItem(Item p){
         products.remove(p);
-    }
-
-    public void setPaymentMethod(Payment paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 
     public void setSaleMethod(Sale saleMethod) {

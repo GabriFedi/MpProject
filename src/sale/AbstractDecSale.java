@@ -3,22 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mpproject;
+package sale;
+
+import sale.Sale;
 
 /**
  *
  * @author alessandro
  */
 public abstract class AbstractDecSale implements Sale{
-    Sale s;
+    Sale sale;
     
-    public AbstractDecSale(Sale s){
-        this.s = s;
+    public AbstractDecSale(Sale sale){
+        this.sale = sale;
     }
 
     @Override
     public double getDiscountedPrice(double price){
-        return s.getDiscountedPrice(price);
+        return sale.getDiscountedPrice(price);
     }
     
     

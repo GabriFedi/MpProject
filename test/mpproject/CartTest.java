@@ -5,6 +5,8 @@
  */
 package mpproject;
 
+import sale.DefaultSale;
+import sale.Sale;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Stream;
@@ -76,15 +78,7 @@ public class CartTest {
     /**
      * Test of setPaymentMethod method, of class Cart.
      */
-    @Test
-    public void testSetPaymentMethod() {
-        System.out.println("setPaymentMethod");
-        Payment paymentMethod = null;
-        Cart instance = new Cart();
-        instance.setPaymentMethod(paymentMethod);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of setSaleMethod method, of class Cart.
