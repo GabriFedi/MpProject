@@ -26,7 +26,6 @@ public class CartPriceVisitor implements MyVisitor<Cart>{
     @Override
     public void visit(Cart obj) {
         price = obj.getItems().mapToDouble(Item::getPrice).sum();
-        System.out.println("price: "+ price);
         price = obj.getSaleMethod().getDiscountedPrice(price);
     }
 

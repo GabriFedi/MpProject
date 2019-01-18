@@ -76,6 +76,7 @@ public class MyJFrame extends javax.swing.JFrame {
         Product p = new Product("item",12.5,"xxx");
         p.setImg((new ImageIcon("imgs/default.png").getImage()));
         this.store.addItem(p);
+        jButtonAddP.setVisible(false);
     }
 
     /**
@@ -322,14 +323,14 @@ public class MyJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Pay");
+        jButton2.setText("Paga");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jLabelBalance.setText("Balance: 0.00€");
+        jLabelBalance.setText("Bilancio: 0.00€");
 
         javax.swing.GroupLayout jDialogPayLayout = new javax.swing.GroupLayout(jDialogPay.getContentPane());
         jDialogPay.getContentPane().setLayout(jDialogPayLayout);
@@ -342,7 +343,7 @@ public class MyJFrame extends javax.swing.JFrame {
                 .addComponent(jComboBoxCards, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabelBalance)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogPayLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -503,7 +504,7 @@ public class MyJFrame extends javax.swing.JFrame {
         );
         jPanelAllLayout.setVerticalGroup(
             jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 608, Short.MAX_VALUE)
+            .addGap(0, 614, Short.MAX_VALUE)
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAllLayout.createSequentialGroup()
                     .addContainerGap()
@@ -511,7 +512,7 @@ public class MyJFrame extends javax.swing.JFrame {
                     .addContainerGap()))
             .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllLayout.createSequentialGroup()
-                    .addComponent(jPanelCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                    .addComponent(jPanelCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -561,7 +562,6 @@ public class MyJFrame extends javax.swing.JFrame {
         this.jPanelCheckOut.setVisible(true);
         MyVisitor v = new SetUpCheckout(jPanelItemsCheckOut,this);
         user.getCart().accept(v);
-        System.out.println(user.getCart());
         //System.out.println(user.getCart().discountedPrice());
     }//GEN-LAST:event_jButtonCheckOut1ActionPerformed
 
@@ -586,7 +586,7 @@ public class MyJFrame extends javax.swing.JFrame {
 
     private void jButtonPromoCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPromoCodeActionPerformed
         // TODO add your handling code here:
-        if(jTextFieldPromoCode.getText().equals("mela")){
+        if(jTextFieldPromoCode.getText().equals("2018discount")){
             Sale tempSale = user.getCart().getSaleMethod();
             user.getCart().setSaleMethod(new PercentSale(tempSale, 20));
             this.observers.notifyObservers(this, "total");
@@ -692,7 +692,7 @@ public class MyJFrame extends javax.swing.JFrame {
 
         jPanel.setLayout(new javax.swing.BoxLayout(jPanel,javax.swing.BoxLayout.Y_AXIS));
         javax.swing.JLabel img = new javax.swing.JLabel();
-        img.setIcon(new ImageIcon(p.getImage()));
+        img.setIcon(new ImageIcon(p.getImage().getScaledInstance(200,200,30)));
         img.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         javax.swing.JLabel title = new javax.swing.JLabel();
